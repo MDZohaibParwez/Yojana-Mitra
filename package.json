@@ -8,7 +8,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "test": "turbo run test",
+    "test": "turbo run test --concurrency=1",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run typecheck",
     "db:migrate": "pnpm --filter @ym/db migrate",
