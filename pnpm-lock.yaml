@@ -71,6 +71,25 @@ importers:
         specifier: ^8.5.0
         version: 8.5.1(postcss@8.5.33)(tsx@4.23.15)(typescript@5.9.3)
 
+  apps/whatsapp:
+    dependencies:
+      '@hono/node-server':
+        specifier: ^1.19.5
+        version: 1.19.19(hono@4.13.19)
+      '@ym/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@ym/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      hono:
+        specifier: ^4.10.4
+        version: 4.13.19
+    devDependencies:
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.1(postcss@8.5.33)(tsx@4.23.15)(typescript@5.9.3)
+
   packages/core:
     dependencies:
       zod:

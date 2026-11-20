@@ -11,3 +11,6 @@ export * from "./repository.js";
 export * from "./tools.js";
 export * from "./i18n/index.js";
 export * from "./ratelimit.js";
+export * from "./conversation/parse.js";
+export * from "./conversation/engine.js";
+export * from "./conversation/session.js";
