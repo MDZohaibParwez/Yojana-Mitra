@@ -70,3 +70,16 @@ describe("parseAnswer", () => {
     expect(parseAnswer("age", "banana")).toBeUndefined();
   });
 });
+
+describe("regional scripts", () => {
+  it.each([
+    ["હું 45 વર્ષનો ખેડૂત છું, ગુજરાત", { age: 45, occupation: "farmer", state: "GJ" }],
+    ["நான் ௪௨ வயது விவசாயி", { occupation: "farmer" }],
+    ["నేను 40 ఏళ్ల రైతును, తెలంగాణ", { age: 40, occupation: "farmer", state: "TG" }],
+    ["আমি ৫০ বছরের কৃষক, পশ্চিমবঙ্গ", { age: 50, occupation: "farmer", state: "WB" }],
+    ["ನಾನು 38 ವರ್ಷದ ರೈತ, ಕರ್ನಾಟಕ", { age: 38, occupation: "farmer", state: "KA" }],
+    ["मी 42 वर्षांचा शेतकरी आहे, महाराष्ट्र", { age: 42, occupation: "farmer", state: "MH" }],
+  ])("%s", (text, expected) => {
+    expect(parseProfileFromText(text)).toMatchObject(expected);
+  });
+});

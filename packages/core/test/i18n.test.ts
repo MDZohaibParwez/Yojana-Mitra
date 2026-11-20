@@ -38,3 +38,15 @@ describe("locales", () => {
     expect(describeCheck(r.failed[0]!, "failed", "hi")).toContain("उम्र");
   });
 });
+
+describe("phase 10 languages", () => {
+  it("have real translations, not English fallbacks, for user-facing basics", () => {
+    for (const l of ["gu", "mr", "ta", "te", "bn", "kn"] as const) {
+      const L = getLocale(l);
+      expect(L.yes, l).not.toBe("Yes");
+      expect(L.disclaimer, l).not.toBe(getLocale("en").disclaimer);
+      expect(L.questions.age, l).not.toBe(getLocale("en").questions.age);
+      expect(L.values.farmer, l).not.toBe("Farmer");
+    }
+  });
+});

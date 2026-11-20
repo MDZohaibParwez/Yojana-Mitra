@@ -11,6 +11,7 @@
     "review": "tsx src/cli/review.ts",
     "check-sources": "tsx src/cli/check-sources.ts",
     "coverage": "tsx src/cli/coverage.ts",
+    "translate": "tsx src/cli/translate.ts",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json"
   },

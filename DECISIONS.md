@@ -58,3 +58,9 @@ Decisions taken while building, so they can be reviewed later. Newest phase last
 34. **Auth**: hashed API keys (env or DB, revocable, scoped `read/write/review`) + optional short-lived HS256 JWT exchange for the browser panel. No passwords or user accounts in this project.
 35. **Edits are reviewable too**: any admin edit returns a scheme to `pending` unless the editor explicitly approves with the `review` scope, so a single compromised `write` key cannot publish content.
 36. **`/v1/chat`** exposes the conversation engine statelessly (client keeps the state) for future clients (e.g. an Android app or IVR).
+
+## Phase 10 – Languages
+
+37. **UI / bot strings** for Gujarati, Marathi, Tamil, Telugu, Bengali and Kannada are complete in `packages/core/src/i18n/locales/extra.ts` and `apps/web/lib/strings.ts`, written by the coding agent — **they need a native-speaker review** before launch. A test guarantees every locale has every key and that the basics are not English fallbacks.
+38. **Scheme content translation** is a batch job (`pnpm --filter @ym/ingest translate --langs gu,mr,...`) using Claude; output is `pending`. Until approved, users in those languages see English scheme text (Marathi readers get Hindi), while all surrounding UI is in their language. Official scheme names are never translated unless an official name in that language is on record.
+39. **Language detection** is script-based (Gujarati, Tamil, Telugu, Bengali, Kannada, Devanagari) with Marathi marker words to separate Marathi from Hindi, and Hinglish marker words for romanised Hindi. The parser understands native digits in all six scripts.

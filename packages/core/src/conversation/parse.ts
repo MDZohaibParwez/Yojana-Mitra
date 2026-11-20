@@ -9,9 +9,14 @@ import { STATES } from "../states.js";
 
 const ACRE_TO_HA = 0.4047;
 
-const HINDI_DIGITS: Record<string, string> = { "०": "0", "१": "1", "२": "2", "३": "3", "४": "4", "५": "5", "६": "6", "७": "7", "८": "8", "९": "9" };
+// Devanagari, Bengali, Gujarati, Tamil, Telugu, Kannada digit blocks -> ASCII.
+const DIGIT_ZEROS = [0x0966, 0x09e6, 0x0ae6, 0x0be6, 0x0c66, 0x0ce6];
 export function normalizeDigits(s: string): string {
-  return s.replace(/[०-९]/g, (d) => HINDI_DIGITS[d]!);
+  return s.replace(/[\u0966-\u096F\u09E6-\u09EF\u0AE6-\u0AEF\u0BE6-\u0BEF\u0C66-\u0C6F\u0CE6-\u0CEF]/g, (d) => {
+    const cp = d.codePointAt(0)!;
+    const zero = DIGIT_ZEROS.find((z) => cp >= z && cp <= z + 9)!;
+    return String(cp - zero);
+  });
 }
 
 const FRACTION_WORDS: Array<[RegExp, number]> = [
@@ -22,7 +27,7 @@ const FRACTION_WORDS: Array<[RegExp, number]> = [
 
 const w = (words: string[]) => new RegExp(`(^|[^\\p{L}\\p{M}])(${words.join("|")})(?=$|[^\\p{L}\\p{M}])`, "iu");
 
-const GENDER_FEMALE = w(["woman", "women", "female", "lady", "girl", "mahila", "aurat", "ladki", "beti", "widow", "mother", "housewife", "महिला", "औरत", "लड़की", "बेटी", "विधवा", "स्त्री", "गृहिणी", "vidhwa", "grihini"]);
+const GENDER_FEMALE = w(["woman", "women", "female", "lady", "girl", "mahila", "aurat", "ladki", "beti", "widow", "mother", "housewife", "महिला", "औरत", "लड़की", "बेटी", "विधवा", "स्त्री", "गृहिणी", "vidhwa", "grihini", "સ્ત્રી", "મહિલા", "பெண்", "స్త్రీ", "మహిళ", "মহিলা", "ಮಹಿಳೆ"]);
 const GENDER_MALE = w(["man", "male", "boy", "purush", "aadmi", "admi", "ladka", "beta", "widower", "पुरुष", "आदमी", "लड़का", "बेटा"]);
 const FEMALE_VERB = /(karti|rehti|rahti|padhti|hoti)\s*(hu|hoon|hun|hai)|(करती|रहती|पढ़ती|होती)\s*(हूँ|हूं|है)/i;
 const MALE_VERB = /(karta|rehta|rahta|padhta|hota)\s*(hu|hoon|hun|hai)|(करता|रहता|पढ़ता|होता)\s*(हूँ|हूं|है)/i;
@@ -33,8 +38,8 @@ const OCCUPATION_RULES: Array<[Profile["occupation"], RegExp]> = [
   ["street_vendor", w(["vendor", "hawker", "rehri", "rehdi", "thela", "thelewala", "pheriwala", "ठेला", "रेहड़ी", "फेरीवाला", "पटरी"])],
   ["fisherman", w(["fisherman", "fisher", "fishing", "machhuara", "machhua", "मछुआरा", "मछली पालन"])],
   ["artisan", w(["artisan", "karigar", "carpenter", "badhai", "tailor", "darzi", "lohar", "blacksmith", "kumhar", "potter", "barber", "nai", "cobbler", "mochi", "weaver", "bunkar", "goldsmith", "sunar", "कारीगर", "बढ़ई", "दर्ज़ी", "दर्जी", "लोहार", "कुम्हार", "नाई", "मोची", "बुनकर"])],
-  ["farmer", w(["farmer", "farming", "kisan", "kisaan", "kheti", "krishak", "किसान", "खेती", "कृषक"])],
-  ["student", w(["student", "studying", "chhatra", "chatra", "vidyarthi", "padhai", "college", "school", "छात्र", "छात्रा", "विद्यार्थी", "पढ़ाई"])],
+  ["farmer", w(["farmer", "farming", "kisan", "kisaan", "kheti", "krishak", "किसान", "खेती", "कृषक", "शेतकरी", "ખેડૂત", "விவசாயி", "రైతు", "రైతును", "কৃষক", "ರೈತ"])],
+  ["student", w(["student", "studying", "chhatra", "chatra", "vidyarthi", "padhai", "college", "school", "छात्र", "छात्रा", "विद्यार्थी", "पढ़ाई", "વિદ્યાર્થી", "மாணவர்", "மாணவி", "విద్యార్థి", "ছাত্র", "ছাত্রী", "ವಿದ್ಯಾರ್ಥಿ"])],
   ["homemaker", w(["homemaker", "housewife", "grihini", "गृहिणी", "हाउसवाइफ"])],
   ["government_employee", /(government|govt|sarkari)\s*(job|employee|naukri|service)|सरकारी\s*(नौकरी|कर्मचारी)/i],
   ["retired", w(["retired", "pensioner", "सेवानिवृत्त", "रिटायर"])],
@@ -134,7 +139,7 @@ export function parseState(raw: string): string | undefined {
 
 function parseAge(t: string): number | undefined {
   const m =
-    t.match(/(\d{1,3})\s*(?:-\s*)?(saal|sal|saal ka|saal ki|years?|yrs?|yr|y\/o|वर्ष|साल|बरस)/i) ??
+    t.match(/(\d{1,3})\s*(?:-\s*)?(saal|sal|saal ka|saal ki|years?|yrs?|yr|y\/o|वर्ष|वर्षे|वर्षांचा|वर्षांची|साल|बरस|વર્ષ|வயது|ఏళ్ల|సంవత్సరాల|বছর|ವರ್ಷ)/i) ??
     t.match(/(?:age|umar|umr|aayu|उम्र|आयु)\s*(?:is|hai|:|-)?\s*(\d{1,3})/i);
   if (!m) return undefined;
   const n = Number(m[1]);
