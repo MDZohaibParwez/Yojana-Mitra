@@ -35,7 +35,7 @@ Decisions taken while building, so they can be reviewed later. Newest phase last
 20. **MCP runs stateless** (`sessionIdGenerator: undefined`, JSON responses): a fresh server+transport per POST, so it scales on Vercel and holds no user state. `GET`/`DELETE /mcp` return 405.
 21. **MCP tool results** return both `structuredContent` and the same JSON as text (for clients that only read text). Tool failures come back as `isError: true` with a coded, actionable message (e.g. `not_found: … use find_schemes`) instead of protocol errors.
 22. **No auth on public tools** (per spec). The MCP server therefore needs no OAuth for the directory; only `report_issue` writes, and it is rate-limited, redacted and rejects identifiers.
-23. **Deploy bundles**: `tsup` bundles each Vercel function into `api/index.js` with all dependencies inlined.
+23. **Deploy bundles**: `scripts/vercel-build.mjs` bundles each Hono service (esbuild, all deps inlined) into Vercel's Build Output API layout (`.vercel/output/functions/index.func`, catch-all route, crons in `config.json`). This avoids depending on Vercel discovering generated files or resolving workspace TypeScript. Verified locally by serving each bundle with plain `node:http`; not yet deployed to a real Vercel project.
 
 ## Phase 6 – States & UTs
 
@@ -64,3 +64,9 @@ Decisions taken while building, so they can be reviewed later. Newest phase last
 37. **UI / bot strings** for Gujarati, Marathi, Tamil, Telugu, Bengali and Kannada are complete in `packages/core/src/i18n/locales/extra.ts` and `apps/web/lib/strings.ts`, written by the coding agent — **they need a native-speaker review** before launch. A test guarantees every locale has every key and that the basics are not English fallbacks.
 38. **Scheme content translation** is a batch job (`pnpm --filter @ym/ingest translate --langs gu,mr,...`) using Claude; output is `pending`. Until approved, users in those languages see English scheme text (Marathi readers get Hindi), while all surrounding UI is in their language. Official scheme names are never translated unless an official name in that language is on record.
 39. **Language detection** is script-based (Gujarati, Tamil, Telugu, Bengali, Kannada, Devanagari) with Marathi marker words to separate Marathi from Hindi, and Hinglish marker words for romanised Hindi. The parser understands native digits in all six scripts.
+
+## Phase 11 – Security & docs
+
+40. **Dependency upgrades from `pnpm audit`**: zod 3 → 4.6 (memory-exhaustion advisory; `z.record(enum)` became `z.partialRecord`), drizzle-orm 0.45 (identifier-escaping advisory), @hono/node-server 2.x (Vercel adapter replaced by `getRequestListener`), postcss forced ≥ 8.5.23 via `pnpm.overrides` (Next's bundled copy). `pnpm audit --prod` is clean.
+41. **WhatsApp media URLs are allowlisted** to Meta hosts before the bearer token is attached.
+42. See SECURITY.md for the full posture and known limitations.

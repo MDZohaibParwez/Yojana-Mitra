@@ -60,6 +60,16 @@ export function toPayloads(to: string, msg: OutMessage): Array<Record<string, un
   ];
 }
 
+/** Media download URLs must be Meta-hosted HTTPS, so the access token is never sent to another host. */
+export function isMetaMediaUrl(url: string): boolean {
+  try {
+    const u = new URL(url);
+    return u.protocol === "https:" && /(^|\.)(fbsbx\.com|facebook\.com|fbcdn\.net|whatsapp\.net)$/.test(u.hostname);
+  } catch {
+    return false;
+  }
+}
+
 export class GraphWhatsApp implements WhatsAppSender {
   private base: string;
   constructor(
@@ -93,6 +103,7 @@ export class GraphWhatsApp implements WhatsAppSender {
     if (!meta.ok) throw new Error(`media lookup failed: ${meta.status}`);
     const { url, mime_type, file_size } = (await meta.json()) as { url: string; mime_type: string; file_size?: number };
     if (file_size && file_size > 16 * 1024 * 1024) throw new Error("voice note too large");
+    if (!isMetaMediaUrl(url)) throw new Error("unexpected media host"); // never send the token elsewhere
     const file = await fetch(url, { headers: { authorization: `Bearer ${this.token}` }, signal: AbortSignal.timeout(20_000) });
     if (!file.ok) throw new Error(`media download failed: ${file.status}`);
     return { data: await file.arrayBuffer(), mime: mime_type };

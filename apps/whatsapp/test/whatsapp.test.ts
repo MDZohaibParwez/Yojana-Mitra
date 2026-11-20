@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { InMemoryRepository, MemorySessionStore, seedToRecord, type OutMessage } from "@ym/core";
 import { loadSeedFiles } from "@ym/db";
 import { createWhatsAppApp, verifySignature } from "../src/app.js";
-import { splitText, toPayloads, type WhatsAppSender } from "../src/graph.js";
+import { isMetaMediaUrl, splitText, toPayloads, type WhatsAppSender } from "../src/graph.js";
 import type { SpeechToText } from "../src/stt.js";
 
 const SECRET = "app-secret";
@@ -102,5 +102,11 @@ describe("WhatsApp webhook", () => {
     const inter = p.at(-1) as { interactive: { action: { buttons: Array<{ reply: { title: string } }> } } };
     expect(inter.interactive.action.buttons[0]!.reply.title.length).toBeLessThanOrEqual(20);
     expect(splitText("a\n\n".repeat(3000), 4096).every((s) => s.length <= 4096)).toBe(true);
+  });
+  it("media downloads only from Meta hosts", () => {
+    expect(isMetaMediaUrl("https://lookaside.fbsbx.com/whatsapp_business/attachments/?mid=1")).toBe(true);
+    expect(isMetaMediaUrl("https://evil.example/fbsbx.com")).toBe(false);
+    expect(isMetaMediaUrl("http://lookaside.fbsbx.com/x")).toBe(false);
+    expect(isMetaMediaUrl("https://fbsbx.com.evil.example/x")).toBe(false);
   });
 });

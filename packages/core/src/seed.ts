@@ -33,7 +33,7 @@ export const SeedSchemeSchema = z
     status: z.enum(["active", "closed", "unknown"]),
     deadline: z.string().date().nullable(),
     benefitValueInr: z.number().nonnegative().nullable(),
-    text: z.record(z.enum(LANGS), SchemeTextSchema).refine((t) => !!t.en, "text.en is required"),
+    text: z.partialRecord(z.enum(LANGS), SchemeTextSchema).refine((t) => !!t.en, "text.en is required"),
     rule: RuleNodeSchema,
   })
   .strict()

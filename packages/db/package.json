@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@ym/core": "workspace:*",
-    "drizzle-orm": "^0.44.7",
+    "drizzle-orm": "^0.45.2",
     "postgres": "^3.4.7"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.6"
+    "drizzle-kit": "^0.31.8"
   }
 }

@@ -102,7 +102,7 @@ const SchemePatch = z
     status: z.enum(["active", "closed", "unknown"]),
     deadline: z.string().date().nullable(),
     benefitValueInr: z.number().int().nonnegative().nullable(),
-    name: z.record(z.enum(LANGS), z.string().min(2).max(300)),
+    name: z.partialRecord(z.enum(LANGS), z.string().min(2).max(300)),
     shortDescription: z.string().min(10).max(1000),
     benefits: z.string().min(5).max(3000),
     howToApplySteps: z.array(z.string().min(3).max(1000)).min(1).max(20),
