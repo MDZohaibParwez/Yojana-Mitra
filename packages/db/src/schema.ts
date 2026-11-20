@@ -67,6 +67,9 @@ export const schemes = pgTable(
     reviewStatus: reviewStatus("review_status").notNull().default("pending"),
     linkStatus: linkStatus("link_status").notNull().default("unchecked"),
     contentHash: text("content_hash"),
+    /** sha256 of the normalised official source page text, for monthly change detection. */
+    sourcePageHash: text("source_page_hash"),
+    linkCheckedAt: timestamp("link_checked_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -151,6 +154,19 @@ export const usageEvents = pgTable(
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [index("usage_created_idx").on(t.createdAt), index("usage_channel_idx").on(t.channel, t.createdAt)],
+);
+
+/** Aggregated anonymous per-scheme daily counter (for "top schemes"). No user data. */
+export const schemeViews = pgTable(
+  "scheme_views",
+  {
+    schemeId: uuid("scheme_id")
+      .notNull()
+      .references(() => schemes.id, { onDelete: "cascade" }),
+    day: date("day").notNull(),
+    views: integer("views").notNull().default(0),
+  },
+  (t) => [primaryKey({ columns: [t.schemeId, t.day] })],
 );
 
 export const schemeEmbeddings = pgTable(

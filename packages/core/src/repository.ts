@@ -23,6 +23,8 @@ export interface UsageEvent {
   state?: string | null;
   lang?: Lang | null;
   at?: Date;
+  /** Schemes shown/checked — only aggregated into per-day counters. */
+  schemeIds?: string[];
 }
 
 export interface ReportInput {

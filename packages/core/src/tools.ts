@@ -177,9 +177,9 @@ function guard(input: unknown) {
   }
 }
 
-async function track(ctx: ToolContext, tool: string, state?: string | null, lang?: Lang) {
+async function track(ctx: ToolContext, tool: string, state?: string | null, lang?: Lang, schemeIds?: string[]) {
   try {
-    await ctx.repo.recordUsage({ channel: ctx.channel, tool, state: state ?? null, lang: lang ?? null });
+    await ctx.repo.recordUsage({ channel: ctx.channel, tool, state: state ?? null, lang: lang ?? null, schemeIds });
   } catch {
     /* counters must never break a user request */
   }
@@ -229,7 +229,7 @@ export async function findSchemes(ctx: ToolContext, rawInput: unknown) {
   const limit = input.limit ?? 20;
   const askNext = [...missingCount.entries()].sort((a, b) => b[1] - a[1]).map(([f]) => f);
   const L = getLocale(lang);
-  await track(ctx, "find_schemes", profile.state, lang);
+  await track(ctx, "find_schemes", profile.state, lang, items.slice(0, 5).map((i) => i.id));
   return {
     lang,
     totalEligible: items.filter((i) => i.eligible === true).length,
@@ -245,7 +245,7 @@ export async function getScheme(ctx: ToolContext, rawInput: unknown) {
   const lang = input.lang ?? "en";
   const s = await requireScheme(ctx, input.idOrSlug);
   const t = schemeText(s, lang);
-  await track(ctx, "get_scheme", s.stateCode, lang);
+  await track(ctx, "get_scheme", s.stateCode, lang, [s.id]);
   return {
     ...summarize(s, lang),
     contentLang: t.lang,
@@ -265,7 +265,7 @@ export async function checkEligibility(ctx: ToolContext, rawInput: unknown) {
   const L = getLocale(lang);
   const s = await requireScheme(ctx, input.schemeId);
   const r = evaluate(input.profile, s.rule);
-  await track(ctx, "check_eligibility", input.profile.state ?? s.stateCode, lang);
+  await track(ctx, "check_eligibility", input.profile.state ?? s.stateCode, lang, [s.id]);
   return {
     scheme: summarize(s, lang),
     eligible: r.eligible,

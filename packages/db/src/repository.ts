@@ -11,7 +11,7 @@ import {
   type UsageEvent,
 } from "@ym/core";
 import type { Db } from "./client.js";
-import { eligibilityRules, reports, schemeEmbeddings, schemes, schemeTranslations, usageEvents } from "./schema.js";
+import { eligibilityRules, reports, schemeEmbeddings, schemes, schemeTranslations, schemeViews, usageEvents } from "./schema.js";
 
 /** Pluggable text embedder for semantic search (multilingual model, EMBEDDING_DIM dims). */
 export interface Embedder {
@@ -217,6 +217,14 @@ export class PgRepository implements SchemeRepository {
       lang: e.lang ?? null,
       createdAt: e.at ?? new Date(),
     });
+    const ids = [...new Set(e.schemeIds ?? [])].filter((id) => UUID.test(id)).slice(0, 20);
+    if (ids.length) {
+      const day = (e.at ?? new Date()).toISOString().slice(0, 10);
+      await this.db
+        .insert(schemeViews)
+        .values(ids.map((schemeId) => ({ schemeId, day, views: 1 })))
+        .onConflictDoUpdate({ target: [schemeViews.schemeId, schemeViews.day], set: { views: sql`${schemeViews.views} + 1` } });
+    }
   }
 }
 

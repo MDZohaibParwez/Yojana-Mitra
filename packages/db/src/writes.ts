@@ -4,10 +4,21 @@ import { parseRule, type RuleNode, type SeedScheme } from "@ym/core";
 import type { Db } from "./client.js";
 import { eligibilityRules, schemes, schemeTranslations, verificationEvents } from "./schema.js";
 
+/** JSON with sorted keys — Postgres jsonb does not preserve key order. */
+export function canonicalJson(v: unknown): string {
+  if (Array.isArray(v)) return `[${v.map(canonicalJson).join(",")}]`;
+  if (v && typeof v === "object")
+    return `{${Object.keys(v as object)
+      .sort()
+      .map((k) => `${JSON.stringify(k)}:${canonicalJson((v as Record<string, unknown>)[k])}`)
+      .join(",")}}`;
+  return JSON.stringify(v);
+}
+
 export function contentHash(s: SeedScheme): string {
   const { text, rule, officialApplyUrl, sourceUrl, deadline, status } = s;
   return createHash("sha256")
-    .update(JSON.stringify({ en: text.en, rule, officialApplyUrl, sourceUrl, deadline, status }))
+    .update(canonicalJson({ en: text.en, rule, officialApplyUrl, sourceUrl, deadline, status }))
     .digest("hex");
 }
 
@@ -122,7 +133,7 @@ export async function addRuleVersion(db: Db, schemeId: string, rule: RuleNode, o
     where: eq(eligibilityRules.schemeId, schemeId),
     orderBy: desc(eligibilityRules.version),
   });
-  if (latest && JSON.stringify(latest.rule) === JSON.stringify(valid)) return null;
+  if (latest && canonicalJson(latest.rule) === canonicalJson(valid)) return null;
   const version = (latest?.version ?? 0) + 1;
   await db.insert(eligibilityRules).values({
     schemeId,
