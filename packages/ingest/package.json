@@ -10,6 +10,7 @@
     "reverify": "tsx src/cli/reverify.ts",
     "review": "tsx src/cli/review.ts",
     "check-sources": "tsx src/cli/check-sources.ts",
+    "coverage": "tsx src/cli/coverage.ts",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json"
   },

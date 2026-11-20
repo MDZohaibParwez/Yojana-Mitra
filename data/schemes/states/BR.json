@@ -1,0 +1,71 @@
+[
+  {
+    "slug": "br-kanya-utthan",
+    "level": "state",
+    "stateCode": "BR",
+    "ministry": "Education Department, Bihar",
+    "category": "education",
+    "tags": [
+      "girl",
+      "graduation",
+      "intermediate",
+      "kanya utthan",
+      "incentive"
+    ],
+    "officialApplyUrl": "https://medhasoft.bihar.gov.in/",
+    "sourceUrl": "https://medhasoft.bihar.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 50000,
+    "text": {
+      "en": {
+        "name": "Mukhyamantri Kanya Utthan Yojana",
+        "shortDescription": "One-time incentive for girls of Bihar who pass intermediate (Class 12) or graduation.",
+        "benefits": "₹25,000 on passing intermediate (unmarried girls) and ₹50,000 on graduation, by DBT.",
+        "howToApplySteps": [
+          "Apply on the MedhaSoft portal when the window opens after results."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Previous class mark sheet",
+          "Bank passbook (in the girl's name)",
+          "Domicile / residence certificate"
+        ]
+      },
+      "hi": {
+        "name": "मुख्यमंत्री कन्या उत्थान योजना",
+        "shortDescription": "इंटरमीडिएट (12वीं) या स्नातक पास करने वाली बिहार की लड़कियों को एकमुश्त प्रोत्साहन राशि।",
+        "benefits": "इंटर पास (अविवाहित) पर ₹25,000 और स्नातक पर ₹50,000, सीधे बैंक खाते में।",
+        "howToApplySteps": [
+          "परिणाम के बाद पोर्टल खुलने पर मेधासॉफ़्ट पर आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "पिछली कक्षा की अंकपत्र",
+          "बैंक पासबुक (लड़की के नाम)",
+          "निवास प्रमाण पत्र"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "BR",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "educationLevel",
+          "op": "gte",
+          "value": "higher_secondary"
+        }
+      ]
+    }
+  }
+]

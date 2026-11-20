@@ -36,3 +36,9 @@ Decisions taken while building, so they can be reviewed later. Newest phase last
 21. **MCP tool results** return both `structuredContent` and the same JSON as text (for clients that only read text). Tool failures come back as `isError: true` with a coded, actionable message (e.g. `not_found: … use find_schemes`) instead of protocol errors.
 22. **No auth on public tools** (per spec). The MCP server therefore needs no OAuth for the directory; only `report_issue` writes, and it is rate-limited, redacted and rejects identifiers.
 23. **Deploy bundles**: `tsup` bundles each Vercel function into `api/index.js` with all dependencies inlined.
+
+## Phase 6 – States & UTs
+
+24. **All 36 States/UTs are registered** as sources (`registry.ts`) and in the profile (`STATES`), but full state coverage is designed to come from myScheme ingestion (which lists state schemes with their state) plus per-portal importers. Only 16 flagship state schemes in 13 states are hand-curated (`data/schemes/states/*.json`), because hand-writing rules for thousands of schemes without being able to read the portals would mean guessing. `pnpm --filter @ym/ingest coverage` reports per-state counts.
+25. **State schemes always include `state eq <code>`** in their rule (enforced by a test), and `find_schemes` only loads central + the user's own state schemes.
+26. **Amounts that change often** (Ladli Behna, Lakshmir Bhandar, Maiyan Samman, Orunodoi, Kanya Sumangala totals) are written as "as currently notified" rather than a number I cannot verify; the reviewer should fill in the current figure.

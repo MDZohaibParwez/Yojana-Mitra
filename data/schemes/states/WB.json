@@ -1,0 +1,167 @@
+[
+  {
+    "slug": "wb-lakshmir-bhandar",
+    "level": "state",
+    "stateCode": "WB",
+    "ministry": "Department of Women & Child Development and Social Welfare, West Bengal",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "lakshmir bhandar",
+      "duare sarkar"
+    ],
+    "officialApplyUrl": "https://socialsecurity.wb.gov.in/",
+    "sourceUrl": "https://socialsecurity.wb.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 14400,
+    "text": {
+      "en": {
+        "name": "Lakshmir Bhandar",
+        "shortDescription": "Monthly assistance for women of West Bengal aged 25–60, with a higher amount for SC/ST women.",
+        "benefits": "Monthly DBT assistance (₹1,000 general, ₹1,200 SC/ST as last notified; confirm the current rate).",
+        "howToApplySteps": [
+          "Apply at a Duare Sarkar camp.",
+          "Must be enrolled in Swasthya Sathi."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Swasthya Sathi card",
+          "Caste certificate (if SC/ST)",
+          "Bank passbook",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "लक्ष्मीर भंडार",
+        "shortDescription": "पश्चिम बंगाल की 25–60 साल की महिलाओं को मासिक सहायता; SC/ST महिलाओं को अधिक राशि।",
+        "benefits": "हर महीने DBT सहायता (अंतिम अधिसूचना के अनुसार सामान्य ₹1,000, SC/ST ₹1,200; वर्तमान दर जाँचें)।",
+        "howToApplySteps": [
+          "दुआरे सरकार शिविर में आवेदन करें।",
+          "स्वास्थ्य साथी में नामांकन ज़रूरी है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "स्वास्थ्य साथी कार्ड",
+          "जाति प्रमाण पत्र (SC/ST हेतु)",
+          "बैंक पासबुक",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "WB",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            25,
+            60
+          ]
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "slug": "wb-kanyashree",
+    "level": "state",
+    "stateCode": "WB",
+    "ministry": "Department of Women & Child Development and Social Welfare, West Bengal",
+    "category": "education",
+    "tags": [
+      "girl",
+      "scholarship",
+      "kanyashree",
+      "adolescent"
+    ],
+    "officialApplyUrl": "https://wbkanyashree.gov.in/",
+    "sourceUrl": "https://wbkanyashree.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 1000,
+    "text": {
+      "en": {
+        "name": "Kanyashree Prakalpa",
+        "shortDescription": "Annual scholarship for unmarried girls aged 13–18 studying in school, and a one-time grant at 18 if still unmarried and studying.",
+        "benefits": "K1: annual scholarship (₹1,000 as last notified) for girls 13–18; K2: one-time grant of ₹25,000 at 18–19 if unmarried and in education.",
+        "howToApplySteps": [
+          "Apply through your school / college Kanyashree nodal teacher.",
+          "Application is verified by the institution and block."
+        ],
+        "documentsRequired": [
+          "Birth certificate",
+          "Bank passbook (in the girl's name)",
+          "Income certificate (family income limit, waived for some categories)",
+          "Institution certificate"
+        ]
+      },
+      "hi": {
+        "name": "कन्याश्री प्रकल्प",
+        "shortDescription": "स्कूल में पढ़ रही 13–18 साल की अविवाहित लड़कियों को वार्षिक छात्रवृत्ति और 18 साल पर एकमुश्त अनुदान।",
+        "benefits": "K1: 13–18 साल की लड़कियों को वार्षिक छात्रवृत्ति (अंतिम अधिसूचना ₹1,000); K2: 18–19 साल पर अविवाहित व पढ़ाई जारी रखने पर ₹25,000 एकमुश्त।",
+        "howToApplySteps": [
+          "स्कूल / कॉलेज के कन्याश्री नोडल शिक्षक के ज़रिए आवेदन करें।",
+          "संस्थान और ब्लॉक स्तर पर सत्यापन।"
+        ],
+        "documentsRequired": [
+          "जन्म प्रमाण पत्र",
+          "बैंक पासबुक (लड़की के नाम)",
+          "आय प्रमाण पत्र",
+          "संस्थान का प्रमाण पत्र"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "WB",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            13,
+            19
+          ]
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "student"
+        },
+        {
+          "field": "maritalStatus",
+          "op": "eq",
+          "value": "single"
+        }
+      ]
+    }
+  }
+]

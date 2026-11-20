@@ -1,0 +1,144 @@
+[
+  {
+    "slug": "ka-gruha-lakshmi",
+    "level": "state",
+    "stateCode": "KA",
+    "ministry": "Department of Women & Child Development, Karnataka",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "gruha lakshmi",
+      "guarantee"
+    ],
+    "officialApplyUrl": "https://sevasindhugs.karnataka.gov.in/",
+    "sourceUrl": "https://dwcd.karnataka.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 24000,
+    "text": {
+      "en": {
+        "name": "Gruha Lakshmi",
+        "shortDescription": "₹2,000 per month to the woman head of each family in Karnataka (as listed on the ration card).",
+        "benefits": "₹2,000 per month by DBT to the woman head of the family.",
+        "howToApplySteps": [
+          "Apply on the Seva Sindhu guarantee portal, Karnataka One / Grama One centre or Bapuji Seva Kendra."
+        ],
+        "documentsRequired": [
+          "Ration card (BPL/AAY/APL)",
+          "Aadhaar card",
+          "Bank passbook (Aadhaar-seeded)",
+          "Mobile number linked to Aadhaar"
+        ]
+      },
+      "hi": {
+        "name": "गृह लक्ष्मी",
+        "shortDescription": "कर्नाटक में राशन कार्ड पर दर्ज हर परिवार की महिला मुखिया को ₹2,000 प्रति माह।",
+        "benefits": "परिवार की महिला मुखिया को हर महीने ₹2,000 सीधे बैंक खाते में।",
+        "howToApplySteps": [
+          "सेवा सिंधु गारंटी पोर्टल, कर्नाटक वन / ग्राम वन केंद्र या बापूजी सेवा केंद्र पर आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "राशन कार्ड",
+          "आधार कार्ड",
+          "बैंक पासबुक (आधार से जुड़ा)",
+          "आधार से जुड़ा मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "KA",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "slug": "ka-shakti",
+    "level": "state",
+    "stateCode": "KA",
+    "ministry": "Transport Department, Karnataka",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "free bus travel",
+      "shakti",
+      "guarantee",
+      "transport"
+    ],
+    "officialApplyUrl": "https://sevasindhugs.karnataka.gov.in/",
+    "sourceUrl": "https://transport.karnataka.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 6000,
+    "text": {
+      "en": {
+        "name": "Shakti (free bus travel for women)",
+        "shortDescription": "Free travel for women and transgender persons resident in Karnataka on state-run non-premium buses within the state.",
+        "benefits": "Zero-fare tickets on KSRTC, BMTC, KKRTC and NWKRTC ordinary / express buses within Karnataka.",
+        "howToApplySteps": [
+          "Show any government photo ID with Karnataka address to the conductor (Shakti smart card where issued)."
+        ],
+        "documentsRequired": [
+          "Aadhaar card or other government photo ID with Karnataka address"
+        ]
+      },
+      "hi": {
+        "name": "शक्ति (महिलाओं के लिए मुफ़्त बस यात्रा)",
+        "shortDescription": "कर्नाटक की निवासी महिलाओं और ट्रांसजेंडर व्यक्तियों को राज्य के अंदर सरकारी साधारण बसों में मुफ़्त यात्रा।",
+        "benefits": "राज्य के अंदर KSRTC, BMTC, KKRTC और NWKRTC की साधारण / एक्सप्रेस बसों में शून्य किराया टिकट।",
+        "howToApplySteps": [
+          "कंडक्टर को कर्नाटक पते वाला कोई सरकारी फ़ोटो पहचान पत्र दिखाएँ।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड या कर्नाटक पते वाला अन्य सरकारी फ़ोटो पहचान पत्र"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "KA",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "in",
+          "value": [
+            "female",
+            "transgender"
+          ]
+        }
+      ]
+    }
+  }
+]

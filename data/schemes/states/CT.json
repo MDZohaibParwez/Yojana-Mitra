@@ -1,0 +1,94 @@
+[
+  {
+    "slug": "ct-mahtari-vandan",
+    "level": "state",
+    "stateCode": "CT",
+    "ministry": "Women & Child Development Department, Chhattisgarh",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "mahtari vandan"
+    ],
+    "officialApplyUrl": "https://mahtarivandan.cgstate.gov.in/",
+    "sourceUrl": "https://mahtarivandan.cgstate.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 12000,
+    "text": {
+      "en": {
+        "name": "Mahtari Vandan Yojana",
+        "shortDescription": "₹1,000 per month for married women of Chhattisgarh aged 21 and above (including widows, divorced and abandoned women).",
+        "benefits": "₹1,000 per month by DBT to the woman's bank account.",
+        "howToApplySteps": [
+          "Apply through the Anganwadi worker / Gram Panchayat when enrolment is open, or on the portal."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Domicile / residence certificate",
+          "Marriage certificate or ration card",
+          "Bank passbook",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "महतारी वंदन योजना",
+        "shortDescription": "छत्तीसगढ़ की 21 साल और उससे अधिक उम्र की विवाहित महिलाओं (विधवा, तलाकशुदा, परित्यक्ता सहित) को ₹1,000 प्रति माह।",
+        "benefits": "महिला के बैंक खाते में हर महीने ₹1,000।",
+        "howToApplySteps": [
+          "नामांकन खुलने पर आंगनवाड़ी कार्यकर्ता / ग्राम पंचायत या पोर्टल से आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "निवास प्रमाण पत्र",
+          "विवाह प्रमाण पत्र या राशन कार्ड",
+          "बैंक पासबुक",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "CT",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 21
+        },
+        {
+          "field": "maritalStatus",
+          "op": "in",
+          "value": [
+            "married",
+            "widowed",
+            "divorced",
+            "separated"
+          ]
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  }
+]

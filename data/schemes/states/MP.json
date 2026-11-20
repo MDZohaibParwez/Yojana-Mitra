@@ -1,0 +1,109 @@
+[
+  {
+    "slug": "mp-ladli-behna",
+    "level": "state",
+    "stateCode": "MP",
+    "ministry": "Women & Child Development Department, Madhya Pradesh",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "ladli behna"
+    ],
+    "officialApplyUrl": "https://cmladlibahna.mp.gov.in/",
+    "sourceUrl": "https://cmladlibahna.mp.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 15000,
+    "text": {
+      "en": {
+        "name": "Mukhyamantri Ladli Behna Yojana",
+        "shortDescription": "Monthly cash assistance for women of Madhya Pradesh aged 21–60 from families with income up to ₹2.5 lakh.",
+        "benefits": "Monthly amount credited by DBT to the woman's own Aadhaar-linked bank account (amount as notified by the state; check the portal for the current figure).",
+        "howToApplySteps": [
+          "Apply at camps run by the Gram Panchayat / ward office or through the Anganwadi.",
+          "e-KYC of Samagra ID and Aadhaar is done at the camp."
+        ],
+        "documentsRequired": [
+          "Samagra family ID",
+          "Aadhaar card",
+          "Bank passbook (account in applicant's name, Aadhaar-seeded)",
+          "Mobile number"
+        ]
+      },
+      "hi": {
+        "name": "मुख्यमंत्री लाड़ली बहना योजना",
+        "shortDescription": "₹2.5 लाख तक पारिवारिक आय वाले परिवारों की 21–60 साल की मध्य प्रदेश की महिलाओं को मासिक आर्थिक सहायता।",
+        "benefits": "महिला के अपने आधार-लिंक बैंक खाते में हर महीने राशि (राज्य द्वारा तय; वर्तमान राशि पोर्टल पर देखें)।",
+        "howToApplySteps": [
+          "ग्राम पंचायत / वार्ड कार्यालय के शिविर या आंगनवाड़ी के ज़रिए आवेदन करें।",
+          "शिविर में समग्र आईडी और आधार का e-KYC होता है।"
+        ],
+        "documentsRequired": [
+          "समग्र परिवार आईडी",
+          "आधार कार्ड",
+          "बैंक पासबुक (आवेदिका के नाम, आधार से जुड़ा)",
+          "मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "MP",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            21,
+            60
+          ]
+        },
+        {
+          "field": "maritalStatus",
+          "op": "in",
+          "value": [
+            "married",
+            "widowed",
+            "divorced",
+            "separated"
+          ],
+          "note": "Married, widowed, divorced or abandoned women"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 250000
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        },
+        {
+          "field": "landHoldingHectares",
+          "op": "lt",
+          "value": 2.03,
+          "note": "Family owns less than 5 acres"
+        }
+      ]
+    }
+  }
+]

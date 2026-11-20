@@ -1,0 +1,87 @@
+[
+  {
+    "slug": "jh-maiyan-samman",
+    "level": "state",
+    "stateCode": "JH",
+    "ministry": "Department of Women, Child Development & Social Security, Jharkhand",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "maiyan samman"
+    ],
+    "officialApplyUrl": "https://mmmsy.jharkhand.gov.in/",
+    "sourceUrl": "https://mmmsy.jharkhand.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 30000,
+    "text": {
+      "en": {
+        "name": "Mukhyamantri Maiyan Samman Yojana",
+        "shortDescription": "Monthly assistance for women of Jharkhand aged 18–50.",
+        "benefits": "Monthly DBT assistance to the woman's Aadhaar-linked bank account (amount as currently notified).",
+        "howToApplySteps": [
+          "Apply at the camps organised at panchayat / ward level, or on the portal when open."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Ration card",
+          "Bank passbook (Aadhaar-seeded)",
+          "Voter ID card",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "मुख्यमंत्री मंईयां सम्मान योजना",
+        "shortDescription": "झारखंड की 18–50 साल की महिलाओं को मासिक सहायता।",
+        "benefits": "महिला के आधार-लिंक बैंक खाते में हर महीने DBT सहायता (वर्तमान अधिसूचित राशि)।",
+        "howToApplySteps": [
+          "पंचायत / वार्ड स्तर के शिविरों में या पोर्टल खुलने पर आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "राशन कार्ड",
+          "बैंक पासबुक (आधार से जुड़ा)",
+          "मतदाता पहचान पत्र",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "JH",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            50
+          ]
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  }
+]
