@@ -163,11 +163,23 @@ function dedupeChecks(checks: Check[]): Check[] {
 }
 
 /**
+ * Facts that follow logically from other answers, so users are not asked twice.
+ * (e.g. "no disability" ⇒ disability % = 0). Never guesses beyond strict implication.
+ */
+export function deriveProfile(p: Profile): Profile {
+  const out: Profile = { ...p };
+  if (out.hasDisability === false && out.disabilityPercent === undefined) out.disabilityPercent = 0;
+  if (out.disabilityPercent !== undefined && out.disabilityPercent > 0 && out.hasDisability === undefined) out.hasDisability = true;
+  if (out.gender === "male" && out.isPregnantOrLactating === undefined) out.isPregnantOrLactating = false;
+  return out;
+}
+
+/**
  * Pure, deterministic eligibility evaluation using three-valued logic.
  * Missing profile fields yield "maybe" plus the list of fields to ask next.
  */
 export function evaluate(profile: Profile, rules: RuleNode): EvaluationResult {
-  const r = walk(rules, profile);
+  const r = walk(rules, deriveProfile(profile));
   return {
     eligible: r.value === "unknown" ? "maybe" : r.value,
     passed: dedupeChecks(r.passed),
