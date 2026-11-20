@@ -1,0 +1,25 @@
+{
+  "name": "yojana-mitra",
+  "private": true,
+  "packageManager": "pnpm@10.28.0",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run typecheck",
+    "db:migrate": "pnpm --filter @ym/db migrate",
+    "db:seed": "pnpm --filter @ym/db seed",
+    "ingest": "pnpm --filter @ym/ingest ingest",
+    "reverify": "pnpm --filter @ym/ingest reverify",
+    "review": "pnpm --filter @ym/ingest review"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

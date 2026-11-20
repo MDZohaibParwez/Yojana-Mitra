@@ -1,0 +1,2300 @@
+[
+  {
+    "slug": "pm-kisan",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "category": "agriculture",
+    "tags": [
+      "farmer",
+      "kisan",
+      "income support",
+      "cash transfer",
+      "dbt"
+    ],
+    "officialApplyUrl": "https://pmkisan.gov.in/",
+    "sourceUrl": "https://pmkisan.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 6000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+        "shortDescription": "Income support of ₹6,000 a year to landholding farmer families, paid in three instalments directly to the bank account.",
+        "benefits": "₹6,000 per year in three equal instalments of ₹2,000 via Direct Benefit Transfer.",
+        "howToApplySteps": [
+          "Visit pmkisan.gov.in and choose 'New Farmer Registration', or go to your nearest CSC / Patwari / agriculture office.",
+          "Enter details and land records; complete e-KYC (OTP or biometric).",
+          "Track status under 'Know Your Status' on the portal."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Land records (Khatauni / 7-12 / Patta)",
+          "Bank passbook (Aadhaar-seeded account)",
+          "Mobile number linked to Aadhaar"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)",
+        "shortDescription": "भूमिधारक किसान परिवारों को साल में ₹6,000 की आय सहायता, तीन किस्तों में सीधे बैंक खाते में।",
+        "benefits": "हर साल ₹2,000 की तीन किस्तें (कुल ₹6,000) सीधे बैंक खाते में।",
+        "howToApplySteps": [
+          "pmkisan.gov.in पर 'New Farmer Registration' चुनें, या नज़दीकी CSC / पटवारी / कृषि कार्यालय जाएँ।",
+          "जानकारी और भूमि रिकॉर्ड भरें; e-KYC (OTP या बायोमेट्रिक) पूरा करें।",
+          "पोर्टल पर 'Know Your Status' में स्थिति देखें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "भूमि रिकॉर्ड (खतौनी / 7-12 / पट्टा)",
+          "बैंक पासबुक (आधार से जुड़ा खाता)",
+          "आधार से जुड़ा मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "farmer"
+        },
+        {
+          "field": "landHoldingHectares",
+          "op": "gt",
+          "value": 0,
+          "note": "Must own cultivable land in own name"
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "Families with an income-tax payer are excluded"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-jay",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Health & Family Welfare (National Health Authority)",
+    "category": "health",
+    "tags": [
+      "health insurance",
+      "hospital",
+      "ayushman card",
+      "senior citizen",
+      "vay vandana"
+    ],
+    "officialApplyUrl": "https://beneficiary.nha.gov.in/",
+    "sourceUrl": "https://pmjay.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 500000,
+    "text": {
+      "en": {
+        "name": "Ayushman Bharat – Pradhan Mantri Jan Arogya Yojana (AB PM-JAY)",
+        "shortDescription": "Free hospital treatment up to ₹5 lakh per family per year at empanelled hospitals for eligible poor families and all senior citizens aged 70+.",
+        "benefits": "Cashless secondary and tertiary hospital care up to ₹5 lakh per family per year. Citizens aged 70+ get a separate Ayushman Vay Vandana card regardless of income.",
+        "howToApplySteps": [
+          "Check your name at beneficiary.nha.gov.in or call 14555.",
+          "Visit a CSC, empanelled hospital (Ayushman Mitra) or use the Ayushman app to complete e-KYC.",
+          "Download / collect the Ayushman card."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Ration card (BPL/AAY/PHH)",
+          "Mobile number linked to Aadhaar"
+        ]
+      },
+      "hi": {
+        "name": "आयुष्मान भारत – प्रधानमंत्री जन आरोग्य योजना (AB PM-JAY)",
+        "shortDescription": "पात्र गरीब परिवारों और 70+ उम्र के सभी बुज़ुर्गों को सूचीबद्ध अस्पतालों में हर साल ₹5 लाख तक मुफ़्त इलाज।",
+        "benefits": "हर परिवार को हर साल ₹5 लाख तक कैशलेस अस्पताल इलाज। 70+ उम्र के नागरिकों को आय से परे अलग आयुष्मान वय वंदना कार्ड।",
+        "howToApplySteps": [
+          "beneficiary.nha.gov.in पर नाम देखें या 14555 पर कॉल करें।",
+          "CSC, सूचीबद्ध अस्पताल (आयुष्मान मित्र) या आयुष्मान ऐप से e-KYC करें।",
+          "आयुष्मान कार्ड डाउनलोड करें / प्राप्त करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "राशन कार्ड (BPL/AAY/PHH)",
+          "आधार से जुड़ा मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "any": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 70,
+          "note": "All citizens 70+ are covered under Ayushman Vay Vandana"
+        },
+        {
+          "field": "hasBplCard",
+          "op": "eq",
+          "value": true,
+          "note": "Families listed in SECC-2011 / state-extended NFSA lists; confirm on beneficiary.nha.gov.in"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmay-g",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Rural Development",
+    "category": "housing",
+    "tags": [
+      "house",
+      "awas",
+      "rural housing",
+      "kutcha house",
+      "gramin"
+    ],
+    "officialApplyUrl": "https://pmayg.nic.in/",
+    "sourceUrl": "https://pmayg.nic.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 120000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Awaas Yojana – Gramin (PMAY-G)",
+        "shortDescription": "Financial help to build a pucca house for rural families who are houseless or live in kutcha / dilapidated houses.",
+        "benefits": "₹1.20 lakh (plains) or ₹1.30 lakh (hilly / difficult areas) per house, plus 90–95 days of MGNREGA wages and toilet support under SBM-G.",
+        "howToApplySteps": [
+          "Beneficiaries are identified from Awaas+ survey lists; contact your Gram Panchayat / Block office.",
+          "Get your name verified by the Gram Sabha.",
+          "Funds are released in instalments to your bank account as construction progresses."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Bank passbook",
+          "MGNREGA job card",
+          "Swachh Bharat Mission (SBM) number if available"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री आवास योजना – ग्रामीण (PMAY-G)",
+        "shortDescription": "बेघर या कच्चे / जर्जर मकान में रहने वाले ग्रामीण परिवारों को पक्का मकान बनाने के लिए आर्थिक मदद।",
+        "benefits": "मैदानी क्षेत्र में ₹1.20 लाख, पहाड़ी / दुर्गम क्षेत्र में ₹1.30 लाख प्रति मकान, साथ में 90–95 दिन की मनरेगा मज़दूरी और शौचालय सहायता।",
+        "howToApplySteps": [
+          "लाभार्थी Awaas+ सर्वे सूची से चुने जाते हैं; ग्राम पंचायत / ब्लॉक कार्यालय से संपर्क करें।",
+          "ग्राम सभा से नाम का सत्यापन कराएँ।",
+          "निर्माण के साथ किस्तों में पैसा बैंक खाते में आता है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "बैंक पासबुक",
+          "मनरेगा जॉब कार्ड",
+          "स्वच्छ भारत मिशन (SBM) नंबर, यदि हो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "area",
+          "op": "eq",
+          "value": "rural"
+        },
+        {
+          "field": "hasPuccaHouse",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmay-u-2",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Housing & Urban Affairs",
+    "category": "housing",
+    "tags": [
+      "house",
+      "awas",
+      "urban housing",
+      "home loan subsidy",
+      "ews",
+      "lig"
+    ],
+    "officialApplyUrl": "https://pmay-urban.gov.in/",
+    "sourceUrl": "https://pmay-urban.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 250000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Awas Yojana – Urban 2.0 (PMAY-U 2.0)",
+        "shortDescription": "Help for urban EWS, LIG and MIG families without a pucca house to build, buy or rent an affordable house.",
+        "benefits": "Up to ₹2.5 lakh assistance for construction / purchase (BLC, AHP), interest subsidy on home loans (ISS), or affordable rental housing.",
+        "howToApplySteps": [
+          "Apply online at pmay-urban.gov.in or through your Urban Local Body / CSC.",
+          "Choose the vertical (BLC / AHP / ARH / ISS) and fill details.",
+          "Urban Local Body verifies eligibility and documents."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Income certificate",
+          "Bank passbook",
+          "Land documents (for self-construction)",
+          "Caste certificate (if applicable)"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री आवास योजना – शहरी 2.0 (PMAY-U 2.0)",
+        "shortDescription": "बिना पक्के मकान वाले शहरी EWS, LIG और MIG परिवारों को किफ़ायती घर बनाने, खरीदने या किराए पर लेने में मदद।",
+        "benefits": "निर्माण / खरीद के लिए ₹2.5 लाख तक सहायता (BLC, AHP), होम लोन पर ब्याज सब्सिडी (ISS) या किफ़ायती किराया आवास।",
+        "howToApplySteps": [
+          "pmay-urban.gov.in पर या नगर निकाय / CSC से आवेदन करें।",
+          "घटक (BLC / AHP / ARH / ISS) चुनकर जानकारी भरें।",
+          "नगर निकाय पात्रता और दस्तावेज़ों की जाँच करता है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "आय प्रमाण पत्र",
+          "बैंक पासबुक",
+          "भूमि दस्तावेज़ (स्वयं निर्माण हेतु)",
+          "जाति प्रमाण पत्र (यदि लागू हो)"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "area",
+          "op": "eq",
+          "value": "urban"
+        },
+        {
+          "field": "hasPuccaHouse",
+          "op": "eq",
+          "value": false,
+          "note": "No pucca house in the name of any family member anywhere in India"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 900000,
+          "note": "EWS up to ₹3 lakh, LIG ₹3–6 lakh, MIG ₹6–9 lakh"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmuy",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Petroleum & Natural Gas",
+    "category": "energy",
+    "tags": [
+      "lpg",
+      "gas connection",
+      "ujjwala",
+      "women",
+      "cooking gas"
+    ],
+    "officialApplyUrl": "https://www.pmuy.gov.in/",
+    "sourceUrl": "https://www.pmuy.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 3000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+        "shortDescription": "Free LPG connection for adult women of poor households that do not already have an LPG connection.",
+        "benefits": "Deposit-free LPG connection with first refill and stove; targeted subsidy on refills (as notified).",
+        "howToApplySteps": [
+          "Apply at pmuy.gov.in or at your nearest LPG distributor (Indane, Bharat Gas, HP Gas).",
+          "Submit KYC and the deprivation declaration.",
+          "Distributor verifies and releases the connection."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Ration card (BPL/AAY/PHH)",
+          "Bank passbook",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री उज्ज्वला योजना (PMUY)",
+        "shortDescription": "जिन गरीब परिवारों के पास LPG कनेक्शन नहीं है, उनकी वयस्क महिलाओं को मुफ़्त LPG कनेक्शन।",
+        "benefits": "बिना जमा राशि LPG कनेक्शन, पहली रिफ़िल और चूल्हा; रिफ़िल पर लक्षित सब्सिडी (अधिसूचना के अनुसार)।",
+        "howToApplySteps": [
+          "pmuy.gov.in पर या नज़दीकी LPG वितरक (इंडेन, भारत गैस, HP गैस) पर आवेदन करें।",
+          "KYC और वंचना घोषणा पत्र जमा करें।",
+          "वितरक जाँच के बाद कनेक्शन देता है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "राशन कार्ड (BPL/AAY/PHH)",
+          "बैंक पासबुक",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "any": [
+            {
+              "field": "hasBplCard",
+              "op": "eq",
+              "value": true
+            },
+            {
+              "field": "socialCategory",
+              "op": "in",
+              "value": [
+                "SC",
+                "ST"
+              ]
+            }
+          ],
+          "note": "Poor household per the deprivation categories on pmuy.gov.in"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sukanya-samriddhi",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Finance (Department of Economic Affairs)",
+    "category": "women_child",
+    "tags": [
+      "girl child",
+      "beti",
+      "savings",
+      "small savings",
+      "daughter"
+    ],
+    "officialApplyUrl": "https://www.indiapost.gov.in/",
+    "sourceUrl": "https://www.nsiindia.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": null,
+    "text": {
+      "en": {
+        "name": "Sukanya Samriddhi Yojana (SSY)",
+        "shortDescription": "High-interest, tax-free small savings account for a girl child below 10 years, opened by a parent or guardian.",
+        "benefits": "Government-notified interest rate (revised quarterly), tax benefits under Section 80C; matures 21 years after opening.",
+        "howToApplySteps": [
+          "Visit any post office or authorised bank branch.",
+          "Fill the SSY account opening form with a minimum deposit of ₹250.",
+          "Deposit between ₹250 and ₹1.5 lakh per year for 15 years."
+        ],
+        "documentsRequired": [
+          "Birth certificate of the girl child",
+          "Aadhaar card of parent/guardian",
+          "Address proof of parent/guardian",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "सुकन्या समृद्धि योजना (SSY)",
+        "shortDescription": "10 साल से कम उम्र की बेटी के लिए ऊँचे ब्याज वाला, कर-मुक्त बचत खाता, जिसे माता-पिता या अभिभावक खोलते हैं।",
+        "benefits": "सरकार द्वारा तय ब्याज दर (हर तिमाही संशोधित), धारा 80C में कर लाभ; खाता खोलने के 21 साल बाद परिपक्व।",
+        "howToApplySteps": [
+          "किसी भी डाकघर या अधिकृत बैंक शाखा में जाएँ।",
+          "न्यूनतम ₹250 जमा के साथ SSY खाता फ़ॉर्म भरें।",
+          "15 साल तक हर साल ₹250 से ₹1.5 लाख तक जमा करें।"
+        ],
+        "documentsRequired": [
+          "बेटी का जन्म प्रमाण पत्र",
+          "माता-पिता/अभिभावक का आधार कार्ड",
+          "माता-पिता/अभिभावक का पता प्रमाण",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "lt",
+          "value": 10,
+          "note": "Profile is of the girl child; account opened by parent/guardian"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "atal-pension-yojana",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Finance (PFRDA)",
+    "category": "pension",
+    "tags": [
+      "pension",
+      "old age",
+      "retirement",
+      "unorganised sector",
+      "apy"
+    ],
+    "officialApplyUrl": "https://www.jansuraksha.gov.in/",
+    "sourceUrl": "https://www.pfrda.org.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 12000,
+    "text": {
+      "en": {
+        "name": "Atal Pension Yojana (APY)",
+        "shortDescription": "Guaranteed monthly pension of ₹1,000–₹5,000 after age 60 for people who join between 18 and 40 and are not income-tax payers.",
+        "benefits": "Guaranteed pension of ₹1,000 to ₹5,000 per month from age 60; same pension to spouse after death, and corpus to nominee.",
+        "howToApplySteps": [
+          "Visit the bank or post office where you have a savings account, or apply via net banking / jansuraksha.gov.in.",
+          "Choose the pension amount; monthly contribution is auto-debited.",
+          "Keep the account funded to avoid penalties."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Bank passbook",
+          "Mobile number"
+        ]
+      },
+      "hi": {
+        "name": "अटल पेंशन योजना (APY)",
+        "shortDescription": "18 से 40 साल की उम्र में जुड़ने वाले, आयकर न भरने वाले लोगों को 60 साल के बाद ₹1,000–₹5,000 मासिक गारंटीड पेंशन।",
+        "benefits": "60 साल की उम्र से हर महीने ₹1,000 से ₹5,000 गारंटीड पेंशन; मृत्यु के बाद जीवनसाथी को वही पेंशन और नामांकित को जमा राशि।",
+        "howToApplySteps": [
+          "जिस बैंक या डाकघर में बचत खाता है वहाँ जाएँ, या नेट बैंकिंग / jansuraksha.gov.in से आवेदन करें।",
+          "पेंशन राशि चुनें; मासिक अंशदान अपने-आप कटेगा।",
+          "जुर्माने से बचने के लिए खाते में राशि रखें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "बैंक पासबुक",
+          "मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            40
+          ]
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "Income-tax payers cannot join from 1 Oct 2022"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmjjby",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Finance (Department of Financial Services)",
+    "category": "insurance",
+    "tags": [
+      "life insurance",
+      "jeevan jyoti",
+      "bima",
+      "insurance"
+    ],
+    "officialApplyUrl": "https://www.jansuraksha.gov.in/",
+    "sourceUrl": "https://www.jansuraksha.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 200000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+        "shortDescription": "₹2 lakh life insurance for any reason of death, for bank / post office account holders aged 18–50, at ₹436 a year.",
+        "benefits": "₹2 lakh paid to the nominee on death due to any cause. Annual premium ₹436, auto-debited.",
+        "howToApplySteps": [
+          "Give consent at your bank / post office branch, net banking, or jansuraksha.gov.in.",
+          "Premium is auto-debited every year (cover period 1 June – 31 May)."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Bank passbook",
+          "Nominee details"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री जीवन ज्योति बीमा योजना (PMJJBY)",
+        "shortDescription": "18–50 साल के बैंक / डाकघर खाताधारकों के लिए ₹436 सालाना में ₹2 लाख का जीवन बीमा।",
+        "benefits": "किसी भी कारण से मृत्यु पर नामांकित व्यक्ति को ₹2 लाख। सालाना प्रीमियम ₹436, खाते से अपने-आप कटता है।",
+        "howToApplySteps": [
+          "बैंक / डाकघर शाखा, नेट बैंकिंग या jansuraksha.gov.in पर सहमति दें।",
+          "प्रीमियम हर साल अपने-आप कटता है (कवर अवधि 1 जून – 31 मई)।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "बैंक पासबुक",
+          "नामांकित व्यक्ति की जानकारी"
+        ]
+      }
+    },
+    "rule": {
+      "field": "age",
+      "op": "between",
+      "value": [
+        18,
+        50
+      ]
+    }
+  },
+  {
+    "slug": "pmsby",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Finance (Department of Financial Services)",
+    "category": "insurance",
+    "tags": [
+      "accident insurance",
+      "suraksha bima",
+      "bima",
+      "insurance"
+    ],
+    "officialApplyUrl": "https://www.jansuraksha.gov.in/",
+    "sourceUrl": "https://www.jansuraksha.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 200000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+        "shortDescription": "Accident insurance of ₹2 lakh for bank / post office account holders aged 18–70 at ₹20 a year.",
+        "benefits": "₹2 lakh for accidental death or total disability, ₹1 lakh for partial permanent disability. Premium ₹20 per year.",
+        "howToApplySteps": [
+          "Give consent at your bank / post office branch, net banking, or jansuraksha.gov.in.",
+          "Premium is auto-debited every year."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Bank passbook",
+          "Nominee details"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री सुरक्षा बीमा योजना (PMSBY)",
+        "shortDescription": "18–70 साल के बैंक / डाकघर खाताधारकों के लिए ₹20 सालाना में ₹2 लाख का दुर्घटना बीमा।",
+        "benefits": "दुर्घटना में मृत्यु या पूर्ण दिव्यांगता पर ₹2 लाख, आंशिक स्थायी दिव्यांगता पर ₹1 लाख। प्रीमियम ₹20 प्रति वर्ष।",
+        "howToApplySteps": [
+          "बैंक / डाकघर शाखा, नेट बैंकिंग या jansuraksha.gov.in पर सहमति दें।",
+          "प्रीमियम हर साल अपने-आप कटता है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "बैंक पासबुक",
+          "नामांकित व्यक्ति की जानकारी"
+        ]
+      }
+    },
+    "rule": {
+      "field": "age",
+      "op": "between",
+      "value": [
+        18,
+        70
+      ]
+    }
+  },
+  {
+    "slug": "ignoaps",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Rural Development (NSAP)",
+    "category": "pension",
+    "tags": [
+      "old age pension",
+      "vridha pension",
+      "senior citizen",
+      "nsap",
+      "budhapa"
+    ],
+    "officialApplyUrl": "https://nsap.nic.in/",
+    "sourceUrl": "https://nsap.nic.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 2400,
+    "text": {
+      "en": {
+        "name": "Indira Gandhi National Old Age Pension Scheme (IGNOAPS)",
+        "shortDescription": "Monthly pension for persons aged 60+ from BPL households. States add their own top-up.",
+        "benefits": "Central share ₹200/month (age 60–79) and ₹500/month (80+); most states add more.",
+        "howToApplySteps": [
+          "Apply at the Gram Panchayat / Block office or Municipal office, or the state social welfare portal.",
+          "Submit age proof and BPL proof.",
+          "Pension is paid to the bank / post office account."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Age proof / birth certificate",
+          "Ration card (BPL/AAY/PHH)",
+          "Bank passbook",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "इंदिरा गांधी राष्ट्रीय वृद्धावस्था पेंशन योजना (IGNOAPS)",
+        "shortDescription": "BPL परिवारों के 60+ उम्र के लोगों को मासिक पेंशन। राज्य अपनी ओर से राशि बढ़ाते हैं।",
+        "benefits": "केंद्र का हिस्सा ₹200/माह (60–79 साल) और ₹500/माह (80+); अधिकतर राज्य और जोड़ते हैं।",
+        "howToApplySteps": [
+          "ग्राम पंचायत / ब्लॉक या नगर कार्यालय, या राज्य समाज कल्याण पोर्टल पर आवेदन करें।",
+          "उम्र और BPL का प्रमाण दें।",
+          "पेंशन बैंक / डाकघर खाते में आती है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "आयु प्रमाण / जन्म प्रमाण पत्र",
+          "राशन कार्ड (BPL/AAY/PHH)",
+          "बैंक पासबुक",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 60
+        },
+        {
+          "field": "hasBplCard",
+          "op": "eq",
+          "value": true
+        }
+      ]
+    }
+  },
+  {
+    "slug": "ignwps",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Rural Development (NSAP)",
+    "category": "pension",
+    "tags": [
+      "widow pension",
+      "vidhwa pension",
+      "women",
+      "nsap"
+    ],
+    "officialApplyUrl": "https://nsap.nic.in/",
+    "sourceUrl": "https://nsap.nic.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 3600,
+    "text": {
+      "en": {
+        "name": "Indira Gandhi National Widow Pension Scheme (IGNWPS)",
+        "shortDescription": "Monthly pension for widows aged 40–79 from BPL households.",
+        "benefits": "Central share ₹300/month; states add their own top-up. Moves to old-age pension at 80.",
+        "howToApplySteps": [
+          "Apply at the Gram Panchayat / Block office or Municipal office, or the state social welfare portal.",
+          "Submit husband's death certificate and BPL proof."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Death certificate (of husband)",
+          "Ration card (BPL/AAY/PHH)",
+          "Bank passbook",
+          "Age proof"
+        ]
+      },
+      "hi": {
+        "name": "इंदिरा गांधी राष्ट्रीय विधवा पेंशन योजना (IGNWPS)",
+        "shortDescription": "BPL परिवारों की 40–79 साल की विधवा महिलाओं को मासिक पेंशन।",
+        "benefits": "केंद्र का हिस्सा ₹300/माह; राज्य अपनी ओर से जोड़ते हैं। 80 साल पर वृद्धावस्था पेंशन में बदल जाती है।",
+        "howToApplySteps": [
+          "ग्राम पंचायत / ब्लॉक या नगर कार्यालय, या राज्य समाज कल्याण पोर्टल पर आवेदन करें।",
+          "पति का मृत्यु प्रमाण पत्र और BPL प्रमाण दें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "पति का मृत्यु प्रमाण पत्र",
+          "राशन कार्ड (BPL/AAY/PHH)",
+          "बैंक पासबुक",
+          "आयु प्रमाण"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "maritalStatus",
+          "op": "eq",
+          "value": "widowed"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            40,
+            79
+          ]
+        },
+        {
+          "field": "hasBplCard",
+          "op": "eq",
+          "value": true
+        }
+      ]
+    }
+  },
+  {
+    "slug": "igndps",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Rural Development (NSAP)",
+    "category": "disability",
+    "tags": [
+      "disability pension",
+      "divyang pension",
+      "viklang",
+      "nsap"
+    ],
+    "officialApplyUrl": "https://nsap.nic.in/",
+    "sourceUrl": "https://nsap.nic.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 3600,
+    "text": {
+      "en": {
+        "name": "Indira Gandhi National Disability Pension Scheme (IGNDPS)",
+        "shortDescription": "Monthly pension for persons aged 18–79 with severe or multiple disabilities (80%+) from BPL households.",
+        "benefits": "Central share ₹300/month (₹500 at 80+); states add their own top-up.",
+        "howToApplySteps": [
+          "Apply at the Gram Panchayat / Block office or Municipal office, or the state social welfare portal.",
+          "Submit disability certificate / UDID card and BPL proof."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Disability certificate / UDID card",
+          "Ration card (BPL/AAY/PHH)",
+          "Bank passbook",
+          "Age proof"
+        ]
+      },
+      "hi": {
+        "name": "इंदिरा गांधी राष्ट्रीय दिव्यांग पेंशन योजना (IGNDPS)",
+        "shortDescription": "BPL परिवारों के 18–79 साल के गंभीर या बहु-दिव्यांग (80%+) व्यक्तियों को मासिक पेंशन।",
+        "benefits": "केंद्र का हिस्सा ₹300/माह (80+ पर ₹500); राज्य अपनी ओर से जोड़ते हैं।",
+        "howToApplySteps": [
+          "ग्राम पंचायत / ब्लॉक या नगर कार्यालय, या राज्य समाज कल्याण पोर्टल पर आवेदन करें।",
+          "दिव्यांगता प्रमाण पत्र / UDID कार्ड और BPL प्रमाण दें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "दिव्यांगता प्रमाण पत्र / UDID कार्ड",
+          "राशन कार्ड (BPL/AAY/PHH)",
+          "बैंक पासबुक",
+          "आयु प्रमाण"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "hasDisability",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "field": "disabilityPercent",
+          "op": "gte",
+          "value": 80
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            79
+          ]
+        },
+        {
+          "field": "hasBplCard",
+          "op": "eq",
+          "value": true
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-sym",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Labour & Employment",
+    "category": "pension",
+    "tags": [
+      "pension",
+      "unorganised worker",
+      "maandhan",
+      "mazdoor",
+      "shram yogi"
+    ],
+    "officialApplyUrl": "https://maandhan.in/",
+    "sourceUrl": "https://maandhan.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 36000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM)",
+        "shortDescription": "Voluntary pension scheme giving ₹3,000 a month after 60 to unorganised workers aged 18–40 earning up to ₹15,000 a month.",
+        "benefits": "Assured pension of ₹3,000/month from age 60. Government matches your monthly contribution (₹55–₹200 depending on entry age).",
+        "howToApplySteps": [
+          "Visit the nearest CSC with Aadhaar and bank details, or self-enrol at maandhan.in.",
+          "The first contribution is paid in cash at the CSC; later ones are auto-debited."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Bank passbook (or IFSC details)",
+          "Mobile number"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री श्रम योगी मान-धन (PM-SYM)",
+        "shortDescription": "₹15,000/माह तक कमाने वाले 18–40 साल के असंगठित मज़दूरों के लिए 60 साल के बाद ₹3,000 मासिक पेंशन।",
+        "benefits": "60 साल से ₹3,000/माह पेंशन। आपके मासिक अंशदान (₹55–₹200, उम्र के अनुसार) के बराबर सरकार भी देती है।",
+        "howToApplySteps": [
+          "आधार और बैंक जानकारी लेकर नज़दीकी CSC जाएँ, या maandhan.in पर स्वयं पंजीकरण करें।",
+          "पहला अंशदान CSC पर नकद; बाद के अंशदान खाते से अपने-आप कटते हैं।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "बैंक पासबुक",
+          "मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            40
+          ]
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "unorganised_worker",
+            "construction_worker",
+            "agricultural_labourer",
+            "street_vendor",
+            "artisan",
+            "fisherman",
+            "self_employed",
+            "homemaker"
+          ]
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 180000,
+          "note": "Monthly income up to ₹15,000"
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "Also must not be an EPFO / ESIC / NPS member"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-kmy",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "category": "pension",
+    "tags": [
+      "farmer pension",
+      "kisan maandhan",
+      "small farmer",
+      "marginal farmer"
+    ],
+    "officialApplyUrl": "https://maandhan.in/",
+    "sourceUrl": "https://pmkmy.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 36000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Kisan Maan-dhan Yojana (PM-KMY)",
+        "shortDescription": "Pension of ₹3,000 a month after age 60 for small and marginal farmers (up to 2 hectares) who join between 18 and 40.",
+        "benefits": "Assured pension of ₹3,000/month from age 60; government matches the farmer's contribution (₹55–₹200/month).",
+        "howToApplySteps": [
+          "Visit the nearest CSC or self-enrol at maandhan.in.",
+          "Contribution can be auto-paid from PM-KISAN instalments if you opt in."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Land records (Khatauni / 7-12 / Patta)",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री किसान मान-धन योजना (PM-KMY)",
+        "shortDescription": "18–40 साल में जुड़ने वाले लघु और सीमांत किसानों (2 हेक्टेयर तक) को 60 साल के बाद ₹3,000 मासिक पेंशन।",
+        "benefits": "60 साल से ₹3,000/माह पेंशन; किसान के अंशदान (₹55–₹200/माह) के बराबर सरकार भी देती है।",
+        "howToApplySteps": [
+          "नज़दीकी CSC जाएँ या maandhan.in पर स्वयं पंजीकरण करें।",
+          "चाहें तो अंशदान PM-KISAN किस्त से अपने-आप कट सकता है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "भूमि रिकॉर्ड (खतौनी / 7-12 / पट्टा)",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "farmer"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            40
+          ]
+        },
+        {
+          "field": "landHoldingHectares",
+          "op": "between",
+          "value": [
+            0.01,
+            2
+          ]
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-mudra",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Finance (Department of Financial Services)",
+    "category": "business",
+    "tags": [
+      "loan",
+      "business loan",
+      "mudra",
+      "shishu",
+      "kishore",
+      "tarun",
+      "self employment"
+    ],
+    "officialApplyUrl": "https://www.jansamarth.in/",
+    "sourceUrl": "https://www.mudra.org.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 50000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri MUDRA Yojana (PMMY)",
+        "shortDescription": "Collateral-free loans for non-farm micro and small businesses: Shishu, Kishore, Tarun and Tarun Plus (up to ₹20 lakh).",
+        "benefits": "Loans without collateral: Shishu up to ₹50,000; Kishore ₹50,000–₹5 lakh; Tarun ₹5–10 lakh; Tarun Plus ₹10–20 lakh (for good repayment of Tarun).",
+        "howToApplySteps": [
+          "Apply at any bank, NBFC or MFI branch, or online at jansamarth.in.",
+          "Submit a simple business plan and KYC.",
+          "The lender assesses and sanctions the loan."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Address proof",
+          "Passport-size photograph",
+          "Business plan / quotation of machinery",
+          "Caste certificate (if applicable)"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री मुद्रा योजना (PMMY)",
+        "shortDescription": "गैर-कृषि सूक्ष्म और छोटे व्यवसायों के लिए बिना गारंटी लोन: शिशु, किशोर, तरुण और तरुण प्लस (₹20 लाख तक)।",
+        "benefits": "बिना गारंटी लोन: शिशु ₹50,000 तक; किशोर ₹50,000–₹5 लाख; तरुण ₹5–10 लाख; तरुण प्लस ₹10–20 लाख।",
+        "howToApplySteps": [
+          "किसी भी बैंक, NBFC या MFI शाखा में या jansamarth.in पर आवेदन करें।",
+          "सरल व्यवसाय योजना और KYC दें।",
+          "बैंक जाँच कर लोन स्वीकृत करता है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "पता प्रमाण",
+          "पासपोर्ट साइज़ फ़ोटो",
+          "व्यवसाय योजना / मशीनरी का कोटेशन",
+          "जाति प्रमाण पत्र (यदि लागू हो)"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "business",
+            "self_employed",
+            "street_vendor",
+            "artisan",
+            "fisherman",
+            "unemployed"
+          ],
+          "note": "Non-farm income-generating activity"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-svanidhi",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Housing & Urban Affairs",
+    "category": "business",
+    "tags": [
+      "street vendor",
+      "rehri",
+      "patri",
+      "loan",
+      "working capital",
+      "thela"
+    ],
+    "officialApplyUrl": "https://pmsvanidhi.mohua.gov.in/",
+    "sourceUrl": "https://pmsvanidhi.mohua.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 15000,
+    "text": {
+      "en": {
+        "name": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
+        "shortDescription": "Collateral-free working-capital loans for urban street vendors, with interest subsidy and digital cashback.",
+        "benefits": "Loans in tranches (starting ₹15,000, then higher on timely repayment), 7% interest subsidy and cashback on digital transactions.",
+        "howToApplySteps": [
+          "Apply at pmsvanidhi.mohua.gov.in, at a CSC, or through your Urban Local Body.",
+          "Provide Certificate of Vending / ID card or Letter of Recommendation from ULB."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Certificate of Vending / vendor ID card",
+          "Bank passbook",
+          "Mobile number linked to Aadhaar"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री स्ट्रीट वेंडर आत्मनिर्भर निधि (PM SVANidhi)",
+        "shortDescription": "शहरी रेहड़ी-पटरी विक्रेताओं के लिए बिना गारंटी कार्यशील पूंजी लोन, ब्याज सब्सिडी और डिजिटल कैशबैक के साथ।",
+        "benefits": "किस्तों में लोन (₹15,000 से शुरू, समय पर चुकाने पर अधिक), 7% ब्याज सब्सिडी और डिजिटल लेनदेन पर कैशबैक।",
+        "howToApplySteps": [
+          "pmsvanidhi.mohua.gov.in, CSC या नगर निकाय के ज़रिए आवेदन करें।",
+          "वेंडिंग प्रमाण पत्र / पहचान पत्र या नगर निकाय का सिफ़ारिश पत्र दें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "वेंडिंग प्रमाण पत्र / विक्रेता पहचान पत्र",
+          "बैंक पासबुक",
+          "आधार से जुड़ा मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "street_vendor"
+        },
+        {
+          "field": "area",
+          "op": "eq",
+          "value": "urban",
+          "note": "Urban and peri-urban vendors"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-vishwakarma",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Micro, Small & Medium Enterprises",
+    "category": "skill",
+    "tags": [
+      "artisan",
+      "craftsman",
+      "carpenter",
+      "tailor",
+      "blacksmith",
+      "potter",
+      "toolkit",
+      "vishwakarma"
+    ],
+    "officialApplyUrl": "https://pmvishwakarma.gov.in/",
+    "sourceUrl": "https://pmvishwakarma.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 15000,
+    "text": {
+      "en": {
+        "name": "PM Vishwakarma",
+        "shortDescription": "Recognition, skill training, toolkit support and low-interest loans for artisans and craftspeople in 18 traditional trades.",
+        "benefits": "PM Vishwakarma certificate & ID, skill training with ₹500/day stipend, ₹15,000 toolkit e-voucher, collateral-free loans up to ₹3 lakh at 5% interest.",
+        "howToApplySteps": [
+          "Register at a CSC (biometric Aadhaar authentication) or on pmvishwakarma.gov.in.",
+          "Verification by Gram Panchayat / ULB, then district and state committees."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Ration card",
+          "Bank passbook",
+          "Mobile number linked to Aadhaar"
+        ]
+      },
+      "hi": {
+        "name": "पीएम विश्वकर्मा",
+        "shortDescription": "18 पारंपरिक व्यवसायों के कारीगरों और शिल्पकारों को पहचान, कौशल प्रशिक्षण, टूलकिट सहायता और कम ब्याज पर लोन।",
+        "benefits": "पीएम विश्वकर्मा प्रमाण पत्र व पहचान पत्र, ₹500/दिन भत्ते के साथ प्रशिक्षण, ₹15,000 टूलकिट ई-वाउचर, 5% ब्याज पर ₹3 लाख तक बिना गारंटी लोन।",
+        "howToApplySteps": [
+          "CSC पर (आधार बायोमेट्रिक से) या pmvishwakarma.gov.in पर पंजीकरण करें।",
+          "ग्राम पंचायत / नगर निकाय, फिर ज़िला और राज्य समिति द्वारा सत्यापन।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "राशन कार्ड",
+          "बैंक पासबुक",
+          "आधार से जुड़ा मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "artisan",
+          "note": "One of the 18 notified trades, working with hands and tools"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "slug": "stand-up-india",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Finance (Department of Financial Services)",
+    "category": "business",
+    "tags": [
+      "loan",
+      "women entrepreneur",
+      "sc st entrepreneur",
+      "startup",
+      "business loan"
+    ],
+    "officialApplyUrl": "https://www.standupmitra.in/",
+    "sourceUrl": "https://www.standupmitra.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 1000000,
+    "text": {
+      "en": {
+        "name": "Stand-Up India",
+        "shortDescription": "Bank loans from ₹10 lakh to ₹1 crore for SC/ST and women entrepreneurs to set up a new (greenfield) enterprise.",
+        "benefits": "Composite loan (term + working capital) between ₹10 lakh and ₹1 crore, with handholding support via Stand-Up Mitra.",
+        "howToApplySteps": [
+          "Register on standupmitra.in or apply directly at a scheduled commercial bank branch.",
+          "Submit project report and KYC."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Caste certificate (if SC/ST)",
+          "Project report",
+          "Address proof",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "स्टैंड-अप इंडिया",
+        "shortDescription": "SC/ST और महिला उद्यमियों को नया उद्यम शुरू करने के लिए ₹10 लाख से ₹1 करोड़ तक बैंक लोन।",
+        "benefits": "₹10 लाख से ₹1 करोड़ तक संयुक्त लोन (टर्म + कार्यशील पूंजी), स्टैंड-अप मित्र से मार्गदर्शन।",
+        "howToApplySteps": [
+          "standupmitra.in पर पंजीकरण करें या सीधे बैंक शाखा में आवेदन करें।",
+          "प्रोजेक्ट रिपोर्ट और KYC दें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "जाति प्रमाण पत्र (SC/ST हेतु)",
+          "प्रोजेक्ट रिपोर्ट",
+          "पता प्रमाण",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "business",
+            "self_employed",
+            "unemployed",
+            "artisan"
+          ]
+        },
+        {
+          "any": [
+            {
+              "field": "gender",
+              "op": "eq",
+              "value": "female"
+            },
+            {
+              "field": "socialCategory",
+              "op": "in",
+              "value": [
+                "SC",
+                "ST"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmegp",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Micro, Small & Medium Enterprises (KVIC)",
+    "category": "employment",
+    "tags": [
+      "subsidy",
+      "self employment",
+      "new business",
+      "manufacturing",
+      "kvic",
+      "loan"
+    ],
+    "officialApplyUrl": "https://www.kviconline.gov.in/pmegpeportal/",
+    "sourceUrl": "https://www.kviconline.gov.in/pmegpeportal/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 200000,
+    "text": {
+      "en": {
+        "name": "Prime Minister's Employment Generation Programme (PMEGP)",
+        "shortDescription": "Margin-money subsidy of 15–35% on bank loans for setting up new micro enterprises in manufacturing or services.",
+        "benefits": "Subsidy of 15–25% (urban) / 25–35% (rural) of project cost; higher rates for SC/ST/OBC/women/minorities/ex-servicemen/PwD. Max project cost ₹50 lakh (manufacturing) / ₹20 lakh (service).",
+        "howToApplySteps": [
+          "Apply online on the PMEGP e-portal.",
+          "Attend interview at District Task Force Committee; bank sanctions loan.",
+          "Complete EDP training before subsidy release."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Project report",
+          "Caste certificate (if applicable)",
+          "Education certificate (Class 8 pass for larger projects)",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री रोज़गार सृजन कार्यक्रम (PMEGP)",
+        "shortDescription": "निर्माण या सेवा क्षेत्र में नया सूक्ष्म उद्यम शुरू करने के लिए बैंक लोन पर 15–35% मार्जिन मनी सब्सिडी।",
+        "benefits": "परियोजना लागत की 15–25% (शहरी) / 25–35% (ग्रामीण) सब्सिडी; SC/ST/OBC/महिला/अल्पसंख्यक/दिव्यांग को अधिक। अधिकतम लागत ₹50 लाख (निर्माण) / ₹20 लाख (सेवा)।",
+        "howToApplySteps": [
+          "PMEGP ई-पोर्टल पर ऑनलाइन आवेदन करें।",
+          "ज़िला टास्क फ़ोर्स समिति का साक्षात्कार; बैंक लोन स्वीकृत करता है।",
+          "सब्सिडी से पहले EDP प्रशिक्षण पूरा करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "प्रोजेक्ट रिपोर्ट",
+          "जाति प्रमाण पत्र (यदि लागू हो)",
+          "शैक्षिक प्रमाण पत्र (बड़ी परियोजना हेतु 8वीं पास)",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "business",
+            "self_employed",
+            "unemployed",
+            "artisan",
+            "student"
+          ],
+          "note": "For setting up a NEW unit"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmmvy",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Women & Child Development",
+    "category": "women_child",
+    "tags": [
+      "maternity",
+      "pregnant",
+      "matru vandana",
+      "mother",
+      "garbhvati"
+    ],
+    "officialApplyUrl": "https://pmmvy.wcd.gov.in/",
+    "sourceUrl": "https://wcd.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 5000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+        "shortDescription": "Cash support for pregnant women and new mothers: ₹5,000 for the first child and ₹6,000 if the second child is a girl.",
+        "benefits": "₹5,000 in two instalments for the first child; ₹6,000 for a second child if it is a girl, paid by DBT.",
+        "howToApplySteps": [
+          "Register through the Anganwadi worker / ASHA or at pmmvy.wcd.gov.in.",
+          "Register pregnancy at an Anganwadi / health facility (MCP card).",
+          "Instalments are paid after ante-natal check-ups and child's birth registration / vaccination."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Mother and Child Protection (MCP) card",
+          "Bank passbook",
+          "Proof of eligibility (e.g. BPL / SC/ST / income certificate / e-Shram / MGNREGA card)"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री मातृ वंदना योजना (PMMVY)",
+        "shortDescription": "गर्भवती महिलाओं और नई माताओं को नकद सहायता: पहले बच्चे पर ₹5,000 और दूसरी संतान बेटी होने पर ₹6,000।",
+        "benefits": "पहले बच्चे पर दो किस्तों में ₹5,000; दूसरी संतान बेटी हो तो ₹6,000, सीधे बैंक खाते में।",
+        "howToApplySteps": [
+          "आंगनवाड़ी कार्यकर्ता / आशा के ज़रिए या pmmvy.wcd.gov.in पर पंजीकरण करें।",
+          "आंगनवाड़ी / स्वास्थ्य केंद्र पर गर्भावस्था पंजीकृत कराएँ (MCP कार्ड)।",
+          "प्रसव-पूर्व जाँच और जन्म पंजीकरण / टीकाकरण के बाद किस्तें मिलती हैं।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "मातृ एवं शिशु सुरक्षा (MCP) कार्ड",
+          "बैंक पासबुक",
+          "पात्रता प्रमाण (जैसे BPL / SC/ST / आय प्रमाण पत्र / ई-श्रम / मनरेगा कार्ड)"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "isPregnantOrLactating",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        },
+        {
+          "any": [
+            {
+              "field": "socialCategory",
+              "op": "in",
+              "value": [
+                "SC",
+                "ST"
+              ]
+            },
+            {
+              "field": "hasBplCard",
+              "op": "eq",
+              "value": true
+            },
+            {
+              "field": "annualIncome",
+              "op": "lt",
+              "value": 800000
+            },
+            {
+              "field": "disabilityPercent",
+              "op": "gte",
+              "value": 40
+            }
+          ],
+          "note": "Any one of the PMMVY 2.0 socio-economic criteria"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmfby",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Agriculture & Farmers Welfare",
+    "category": "agriculture",
+    "tags": [
+      "crop insurance",
+      "fasal bima",
+      "farmer",
+      "kisan",
+      "drought",
+      "flood"
+    ],
+    "officialApplyUrl": "https://pmfby.gov.in/",
+    "sourceUrl": "https://pmfby.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 20000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+        "shortDescription": "Low-premium crop insurance against natural calamities, pests and diseases for all farmers, including tenant farmers and sharecroppers.",
+        "benefits": "Farmer premium only 2% (Kharif), 1.5% (Rabi) and 5% (commercial / horticulture); claims paid to bank account for crop loss.",
+        "howToApplySteps": [
+          "Loanee farmers are enrolled by their bank (can opt out); others apply at pmfby.gov.in, CSC, bank or insurance agent before the season cut-off date.",
+          "Report crop loss within 72 hours on the Crop Insurance app or helpline 14447."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Land records (Khatauni / 7-12 / Patta) or tenancy agreement",
+          "Bank passbook",
+          "Sowing certificate (where required)"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+        "shortDescription": "प्राकृतिक आपदा, कीट और रोग से फसल नुकसान के लिए कम प्रीमियम का बीमा — बटाईदार और काश्तकार किसानों सहित सभी के लिए।",
+        "benefits": "किसान का प्रीमियम सिर्फ़ 2% (खरीफ़), 1.5% (रबी) और 5% (वाणिज्यिक / बागवानी); फसल नुकसान पर दावा बैंक खाते में।",
+        "howToApplySteps": [
+          "ऋणी किसानों का नामांकन बैंक करता है (बाहर निकल सकते हैं); अन्य किसान मौसम की अंतिम तिथि से पहले pmfby.gov.in, CSC, बैंक या बीमा एजेंट से आवेदन करें।",
+          "फसल नुकसान की सूचना 72 घंटे में Crop Insurance ऐप या हेल्पलाइन 14447 पर दें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "भूमि रिकॉर्ड या बटाई अनुबंध",
+          "बैंक पासबुक",
+          "बुवाई प्रमाण पत्र (जहाँ आवश्यक)"
+        ]
+      }
+    },
+    "rule": {
+      "field": "occupation",
+      "op": "eq",
+      "value": "farmer",
+      "note": "Includes tenant farmers and sharecroppers growing notified crops"
+    }
+  },
+  {
+    "slug": "kisan-credit-card",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Agriculture & Farmers Welfare / NABARD",
+    "category": "agriculture",
+    "tags": [
+      "kcc",
+      "crop loan",
+      "farmer loan",
+      "fisheries",
+      "animal husbandry",
+      "credit"
+    ],
+    "officialApplyUrl": "https://www.jansamarth.in/",
+    "sourceUrl": "https://agriwelfare.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 300000,
+    "text": {
+      "en": {
+        "name": "Kisan Credit Card (KCC)",
+        "shortDescription": "Short-term credit for farming, animal husbandry and fisheries at subsidised interest through banks.",
+        "benefits": "Crop loans up to ₹3 lakh at effective 4% interest on prompt repayment (with interest subvention); collateral-free up to ₹2 lakh.",
+        "howToApplySteps": [
+          "Apply at any bank branch, via jansamarth.in, or using the KCC form on pmkisan.gov.in.",
+          "Bank verifies land / activity and issues the card."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Land records (Khatauni / 7-12 / Patta)",
+          "Passport-size photograph",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "किसान क्रेडिट कार्ड (KCC)",
+        "shortDescription": "खेती, पशुपालन और मत्स्य पालन के लिए बैंकों से रियायती ब्याज पर अल्पकालिक कर्ज़।",
+        "benefits": "₹3 लाख तक फसल लोन, समय पर चुकाने पर प्रभावी 4% ब्याज; ₹2 लाख तक बिना गारंटी।",
+        "howToApplySteps": [
+          "किसी भी बैंक शाखा, jansamarth.in या pmkisan.gov.in पर KCC फ़ॉर्म से आवेदन करें।",
+          "बैंक ज़मीन / गतिविधि की जाँच कर कार्ड जारी करता है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "भूमि रिकॉर्ड (खतौनी / 7-12 / पट्टा)",
+          "पासपोर्ट साइज़ फ़ोटो",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "farmer",
+            "fisherman"
+          ],
+          "note": "Also animal-husbandry farmers, tenant farmers, SHGs/JLGs"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            75
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "slug": "e-shram",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Labour & Employment",
+    "category": "social_welfare",
+    "tags": [
+      "unorganised worker",
+      "eshram card",
+      "labour card",
+      "mazdoor",
+      "registration"
+    ],
+    "officialApplyUrl": "https://eshram.gov.in/",
+    "sourceUrl": "https://eshram.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 200000,
+    "text": {
+      "en": {
+        "name": "e-Shram (National Database of Unorganised Workers)",
+        "shortDescription": "Free registration and UAN card for unorganised workers aged 16–59, giving access to social-security schemes.",
+        "benefits": "e-Shram UAN card; single window access to welfare schemes; accidental insurance cover of ₹2 lakh (death / permanent disability) under PMSBY linkage.",
+        "howToApplySteps": [
+          "Self-register at eshram.gov.in with Aadhaar-linked mobile OTP, or visit a CSC.",
+          "Download the e-Shram card."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Mobile number linked to Aadhaar",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "ई-श्रम (असंगठित मज़दूरों का राष्ट्रीय डेटाबेस)",
+        "shortDescription": "16–59 साल के असंगठित मज़दूरों के लिए मुफ़्त पंजीकरण और UAN कार्ड, जिससे सामाजिक सुरक्षा योजनाओं का लाभ मिलता है।",
+        "benefits": "ई-श्रम UAN कार्ड; कल्याण योजनाओं तक एक जगह पहुँच; PMSBY से जुड़ा ₹2 लाख दुर्घटना बीमा।",
+        "howToApplySteps": [
+          "eshram.gov.in पर आधार-लिंक मोबाइल OTP से स्वयं पंजीकरण करें, या CSC जाएँ।",
+          "ई-श्रम कार्ड डाउनलोड करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "आधार से जुड़ा मोबाइल नंबर",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            16,
+            59
+          ]
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "unorganised_worker",
+            "construction_worker",
+            "agricultural_labourer",
+            "street_vendor",
+            "artisan",
+            "fisherman",
+            "self_employed",
+            "homemaker",
+            "farmer"
+          ]
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "Also must not be an EPFO / ESIC member"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "post-matric-scholarship-sc",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Social Justice & Empowerment",
+    "category": "education",
+    "tags": [
+      "scholarship",
+      "sc student",
+      "post matric",
+      "college",
+      "nsp",
+      "chhatravritti"
+    ],
+    "officialApplyUrl": "https://scholarships.gov.in/",
+    "sourceUrl": "https://socialjustice.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 20000,
+    "text": {
+      "en": {
+        "name": "Post Matric Scholarship for Scheduled Caste Students",
+        "shortDescription": "Scholarship for SC students studying in Class 11 and above (including college and professional courses) with family income up to ₹2.5 lakh.",
+        "benefits": "Full compulsory non-refundable fees plus an academic allowance, paid by DBT. Applications usually through the state scholarship portal or NSP.",
+        "howToApplySteps": [
+          "Apply on your state scholarship portal or scholarships.gov.in during the application window.",
+          "Institute verifies; then district / state verification."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Caste certificate",
+          "Income certificate",
+          "Previous class mark sheet",
+          "Fee receipt",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "अनुसूचित जाति के विद्यार्थियों के लिए पोस्ट मैट्रिक छात्रवृत्ति",
+        "shortDescription": "₹2.5 लाख तक पारिवारिक आय वाले, कक्षा 11 और उससे ऊपर (कॉलेज व व्यावसायिक पाठ्यक्रम सहित) पढ़ रहे SC विद्यार्थियों को छात्रवृत्ति।",
+        "benefits": "अनिवार्य गैर-वापसी योग्य फ़ीस और शैक्षणिक भत्ता, सीधे बैंक खाते में। आवेदन आमतौर पर राज्य छात्रवृत्ति पोर्टल या NSP पर।",
+        "howToApplySteps": [
+          "आवेदन अवधि में राज्य छात्रवृत्ति पोर्टल या scholarships.gov.in पर आवेदन करें।",
+          "संस्थान, फिर ज़िला / राज्य स्तर पर सत्यापन।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "जाति प्रमाण पत्र",
+          "आय प्रमाण पत्र",
+          "पिछली कक्षा की अंकपत्र",
+          "फ़ीस रसीद",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "socialCategory",
+          "op": "eq",
+          "value": "SC"
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "student"
+        },
+        {
+          "field": "educationLevel",
+          "op": "gte",
+          "value": "secondary",
+          "note": "Passed Class 10; studying Class 11 or above"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 250000
+        }
+      ]
+    }
+  },
+  {
+    "slug": "post-matric-scholarship-st",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Tribal Affairs",
+    "category": "education",
+    "tags": [
+      "scholarship",
+      "st student",
+      "tribal",
+      "post matric",
+      "college",
+      "nsp"
+    ],
+    "officialApplyUrl": "https://scholarships.gov.in/",
+    "sourceUrl": "https://tribal.nic.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 20000,
+    "text": {
+      "en": {
+        "name": "Post Matric Scholarship for Scheduled Tribe Students",
+        "shortDescription": "Scholarship for ST students studying in Class 11 and above with family income up to ₹2.5 lakh.",
+        "benefits": "Compulsory fees plus maintenance allowance, paid by DBT.",
+        "howToApplySteps": [
+          "Apply on your state scholarship portal or scholarships.gov.in during the application window.",
+          "Institute and state verification."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Caste certificate",
+          "Income certificate",
+          "Previous class mark sheet",
+          "Fee receipt",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "अनुसूचित जनजाति के विद्यार्थियों के लिए पोस्ट मैट्रिक छात्रवृत्ति",
+        "shortDescription": "₹2.5 लाख तक पारिवारिक आय वाले, कक्षा 11 और उससे ऊपर पढ़ रहे ST विद्यार्थियों को छात्रवृत्ति।",
+        "benefits": "अनिवार्य फ़ीस और रखरखाव भत्ता, सीधे बैंक खाते में।",
+        "howToApplySteps": [
+          "आवेदन अवधि में राज्य छात्रवृत्ति पोर्टल या scholarships.gov.in पर आवेदन करें।",
+          "संस्थान और राज्य स्तर पर सत्यापन।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "जाति प्रमाण पत्र",
+          "आय प्रमाण पत्र",
+          "पिछली कक्षा की अंकपत्र",
+          "फ़ीस रसीद",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "socialCategory",
+          "op": "eq",
+          "value": "ST"
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "student"
+        },
+        {
+          "field": "educationLevel",
+          "op": "gte",
+          "value": "secondary"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 250000
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-yasasvi-post-matric-obc",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Social Justice & Empowerment",
+    "category": "education",
+    "tags": [
+      "scholarship",
+      "obc student",
+      "ebc",
+      "dnt",
+      "post matric",
+      "yasasvi"
+    ],
+    "officialApplyUrl": "https://scholarships.gov.in/",
+    "sourceUrl": "https://socialjustice.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 10000,
+    "text": {
+      "en": {
+        "name": "PM YASASVI – Post Matric Scholarship for OBC, EBC and DNT Students",
+        "shortDescription": "Scholarship for OBC / EBC / DNT students in Class 11 and above with family income up to ₹2.5 lakh.",
+        "benefits": "Fees and academic allowance as per state norms, paid by DBT.",
+        "howToApplySteps": [
+          "Apply on your state scholarship portal or scholarships.gov.in during the application window."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Caste certificate",
+          "Income certificate",
+          "Previous class mark sheet",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "पीएम यशस्वी – OBC, EBC और DNT विद्यार्थियों के लिए पोस्ट मैट्रिक छात्रवृत्ति",
+        "shortDescription": "₹2.5 लाख तक पारिवारिक आय वाले, कक्षा 11 और ऊपर पढ़ रहे OBC / EBC / DNT विद्यार्थियों को छात्रवृत्ति।",
+        "benefits": "राज्य मानकों के अनुसार फ़ीस और शैक्षणिक भत्ता, सीधे बैंक खाते में।",
+        "howToApplySteps": [
+          "आवेदन अवधि में राज्य छात्रवृत्ति पोर्टल या scholarships.gov.in पर आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "जाति प्रमाण पत्र",
+          "आय प्रमाण पत्र",
+          "पिछली कक्षा की अंकपत्र",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "socialCategory",
+          "op": "eq",
+          "value": "OBC"
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "student"
+        },
+        {
+          "field": "educationLevel",
+          "op": "gte",
+          "value": "secondary"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 250000
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-surya-ghar",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of New & Renewable Energy",
+    "category": "energy",
+    "tags": [
+      "solar",
+      "rooftop solar",
+      "free electricity",
+      "bijli",
+      "subsidy"
+    ],
+    "officialApplyUrl": "https://pmsuryaghar.gov.in/",
+    "sourceUrl": "https://pmsuryaghar.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 78000,
+    "text": {
+      "en": {
+        "name": "PM Surya Ghar: Muft Bijli Yojana",
+        "shortDescription": "Subsidy for installing rooftop solar on your own house, so you can get up to 300 units of free electricity a month.",
+        "benefits": "Central subsidy of ₹30,000 per kW for the first 2 kW and ₹18,000 for the 3rd kW (max ₹78,000); collateral-free loans available.",
+        "howToApplySteps": [
+          "Register on pmsuryaghar.gov.in with your electricity consumer number.",
+          "Choose a registered vendor and install; DISCOM inspects and installs net meter.",
+          "Subsidy is credited to your bank account."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Electricity bill",
+          "Bank passbook",
+          "Proof of house / roof ownership"
+        ]
+      },
+      "hi": {
+        "name": "पीएम सूर्य घर: मुफ़्त बिजली योजना",
+        "shortDescription": "अपने घर की छत पर सोलर लगाने के लिए सब्सिडी, जिससे हर महीने 300 यूनिट तक मुफ़्त बिजली मिल सकती है।",
+        "benefits": "पहले 2 kW पर ₹30,000 प्रति kW और तीसरे kW पर ₹18,000 (अधिकतम ₹78,000) केंद्रीय सब्सिडी; बिना गारंटी लोन उपलब्ध।",
+        "howToApplySteps": [
+          "बिजली उपभोक्ता नंबर से pmsuryaghar.gov.in पर पंजीकरण करें।",
+          "पंजीकृत वेंडर से लगवाएँ; डिस्कॉम जाँच कर नेट मीटर लगाता है।",
+          "सब्सिडी बैंक खाते में आती है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "बिजली बिल",
+          "बैंक पासबुक",
+          "घर / छत के स्वामित्व का प्रमाण"
+        ]
+      }
+    },
+    "rule": {
+      "field": "hasPuccaHouse",
+      "op": "eq",
+      "value": true,
+      "note": "Own house with a suitable roof and a valid electricity connection"
+    }
+  },
+  {
+    "slug": "mgnrega",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Rural Development",
+    "category": "employment",
+    "tags": [
+      "job card",
+      "100 days work",
+      "nrega",
+      "rozgar",
+      "wage employment",
+      "mazdoori"
+    ],
+    "officialApplyUrl": "https://nrega.nic.in/",
+    "sourceUrl": "https://nrega.nic.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 25000,
+    "text": {
+      "en": {
+        "name": "Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)",
+        "shortDescription": "Guaranteed 100 days of paid unskilled manual work a year for every rural household whose adult members ask for work.",
+        "benefits": "Up to 100 days of wage employment per household per year at state-notified wage rates; unemployment allowance if work is not given within 15 days.",
+        "howToApplySteps": [
+          "Apply for a job card at the Gram Panchayat.",
+          "Submit a written / oral demand for work; work must be given within 15 days within 5 km.",
+          "Wages are paid to the bank / post office account."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Passport-size photograph",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "महात्मा गांधी राष्ट्रीय ग्रामीण रोज़गार गारंटी अधिनियम (मनरेगा)",
+        "shortDescription": "काम माँगने वाले हर ग्रामीण परिवार के वयस्क सदस्यों को साल में 100 दिन का मज़दूरी वाला काम गारंटी।",
+        "benefits": "हर परिवार को साल में 100 दिन तक राज्य द्वारा तय मज़दूरी पर काम; 15 दिन में काम न मिलने पर बेरोज़गारी भत्ता।",
+        "howToApplySteps": [
+          "ग्राम पंचायत में जॉब कार्ड के लिए आवेदन करें।",
+          "लिखित / मौखिक रूप से काम माँगें; 15 दिन में 5 km के भीतर काम मिलना चाहिए।",
+          "मज़दूरी बैंक / डाकघर खाते में आती है।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "पासपोर्ट साइज़ फ़ोटो",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "area",
+          "op": "eq",
+          "value": "rural"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pmjdy",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Finance (Department of Financial Services)",
+    "category": "banking",
+    "tags": [
+      "bank account",
+      "zero balance",
+      "jan dhan",
+      "rupay",
+      "overdraft"
+    ],
+    "officialApplyUrl": "https://pmjdy.gov.in/",
+    "sourceUrl": "https://pmjdy.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 10000,
+    "text": {
+      "en": {
+        "name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+        "shortDescription": "Zero-balance basic savings bank account with RuPay card, accident insurance and overdraft facility.",
+        "benefits": "No minimum balance; RuPay debit card with ₹2 lakh accident insurance; overdraft up to ₹10,000 for eligible account holders.",
+        "howToApplySteps": [
+          "Visit any bank branch or Bank Mitra (business correspondent).",
+          "Fill the account opening form with KYC."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "प्रधानमंत्री जन धन योजना (PMJDY)",
+        "shortDescription": "रुपे कार्ड, दुर्घटना बीमा और ओवरड्राफ़्ट सुविधा के साथ ज़ीरो बैलेंस बचत खाता।",
+        "benefits": "न्यूनतम बैलेंस नहीं; ₹2 लाख दुर्घटना बीमा वाला रुपे डेबिट कार्ड; पात्र खाताधारकों को ₹10,000 तक ओवरड्राफ़्ट।",
+        "howToApplySteps": [
+          "किसी भी बैंक शाखा या बैंक मित्र के पास जाएँ।",
+          "KYC के साथ खाता खोलने का फ़ॉर्म भरें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "field": "age",
+      "op": "gte",
+      "value": 10,
+      "note": "Any Indian citizen without a bank account; minors 10+ with guardian"
+    }
+  },
+  {
+    "slug": "adip",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Social Justice & Empowerment (DEPwD)",
+    "category": "disability",
+    "tags": [
+      "assistive devices",
+      "wheelchair",
+      "hearing aid",
+      "tricycle",
+      "divyang",
+      "aids and appliances"
+    ],
+    "officialApplyUrl": "https://depwd.gov.in/",
+    "sourceUrl": "https://depwd.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 15000,
+    "text": {
+      "en": {
+        "name": "Assistance to Disabled Persons for Purchase / Fitting of Aids and Appliances (ADIP)",
+        "shortDescription": "Free or subsidised assistive devices (wheelchairs, hearing aids, tricycles, artificial limbs etc.) for persons with 40%+ disability.",
+        "benefits": "Full cost of the device for monthly income up to ₹22,500; 50% for ₹22,501–₹30,000. Distributed through ALIMCO camps and implementing agencies.",
+        "howToApplySteps": [
+          "Attend an ADIP / ALIMCO assessment camp or apply through the District Disability Rehabilitation Centre.",
+          "Device is fitted after assessment."
+        ],
+        "documentsRequired": [
+          "Disability certificate / UDID card",
+          "Income certificate",
+          "Aadhaar card",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "दिव्यांगजनों को सहायक उपकरण खरीद / फ़िटिंग हेतु सहायता (ADIP)",
+        "shortDescription": "40%+ दिव्यांगता वाले व्यक्तियों को मुफ़्त या रियायती सहायक उपकरण (व्हीलचेयर, श्रवण यंत्र, ट्राइसाइकिल, कृत्रिम अंग आदि)।",
+        "benefits": "₹22,500/माह तक आय पर उपकरण का पूरा खर्च; ₹22,501–₹30,000 पर 50%। ALIMCO शिविरों और एजेंसियों से वितरण।",
+        "howToApplySteps": [
+          "ADIP / ALIMCO आकलन शिविर में जाएँ या ज़िला दिव्यांग पुनर्वास केंद्र से आवेदन करें।",
+          "आकलन के बाद उपकरण लगाया जाता है।"
+        ],
+        "documentsRequired": [
+          "दिव्यांगता प्रमाण पत्र / UDID कार्ड",
+          "आय प्रमाण पत्र",
+          "आधार कार्ड",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "hasDisability",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "field": "disabilityPercent",
+          "op": "gte",
+          "value": 40
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 360000,
+          "note": "Monthly income up to ₹30,000 (full aid up to ₹22,500)"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "pm-internship",
+    "level": "central",
+    "stateCode": null,
+    "ministry": "Ministry of Corporate Affairs",
+    "category": "skill",
+    "tags": [
+      "internship",
+      "youth",
+      "stipend",
+      "job",
+      "training"
+    ],
+    "officialApplyUrl": "https://pminternship.mca.gov.in/",
+    "sourceUrl": "https://pminternship.mca.gov.in/",
+    "status": "unknown",
+    "deadline": null,
+    "benefitValueInr": 66000,
+    "text": {
+      "en": {
+        "name": "PM Internship Scheme",
+        "shortDescription": "12-month internships in top companies for youth aged 21–24 who are not in full-time education or employment.",
+        "benefits": "₹5,000 per month stipend plus one-time grant of ₹6,000, and insurance cover during the internship.",
+        "howToApplySteps": [
+          "Register on pminternship.mca.gov.in during an open round.",
+          "Choose up to 5 internship opportunities; companies shortlist and send offers."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Previous class mark sheet",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "पीएम इंटर्नशिप योजना",
+        "shortDescription": "पूर्णकालिक पढ़ाई या नौकरी न कर रहे 21–24 साल के युवाओं के लिए बड़ी कंपनियों में 12 महीने की इंटर्नशिप।",
+        "benefits": "हर महीने ₹5,000 भत्ता और ₹6,000 एकमुश्त अनुदान, इंटर्नशिप के दौरान बीमा।",
+        "howToApplySteps": [
+          "खुले राउंड में pminternship.mca.gov.in पर पंजीकरण करें।",
+          "5 तक इंटर्नशिप चुनें; कंपनियाँ चयन कर ऑफ़र भेजती हैं।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "पिछली कक्षा की अंकपत्र",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            21,
+            24
+          ]
+        },
+        {
+          "field": "occupation",
+          "op": "eq",
+          "value": "unemployed",
+          "note": "Not in full-time education or employment"
+        },
+        {
+          "field": "educationLevel",
+          "op": "gte",
+          "value": "secondary"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lt",
+          "value": 800000,
+          "note": "Family income below ₹8 lakh; no family member in a permanent government job"
+        }
+      ]
+    }
+  }
+]
