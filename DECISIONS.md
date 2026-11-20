@@ -27,3 +27,12 @@ Decisions taken while building, so they can be reviewed later. Newest phase last
 15. **myScheme importer uses only public pages + sitemap**, not the internal search API (which needs a key embedded in their web app). All importers ship disabled until ToS review (see DATA_SOURCES.md).
 16. **Re-verification semantics.** Dead link or changed source page ⇒ scheme back to `pending` (hidden). Unchanged page of an approved scheme ⇒ `last_verified_at` refreshed, because the content still matches what a human approved.
 17. **Top-schemes stat** uses a separate aggregated `scheme_views(scheme_id, day, views)` counter so `usage_events` stays exactly channel/tool/state/lang/timestamp.
+
+## Phase 4–5 – API & MCP
+
+18. **Hono** for the API, MCP and WhatsApp services: one framework that runs on Node, Vercel functions and tests (`app.request`) without a server.
+19. **Rate limiting** is an in-memory fixed window keyed by `sha256(ip + day + secret)` — raw IPs are never stored. On serverless each instance counts separately; add a Vercel Firewall rate-limit rule for a hard global cap.
+20. **MCP runs stateless** (`sessionIdGenerator: undefined`, JSON responses): a fresh server+transport per POST, so it scales on Vercel and holds no user state. `GET`/`DELETE /mcp` return 405.
+21. **MCP tool results** return both `structuredContent` and the same JSON as text (for clients that only read text). Tool failures come back as `isError: true` with a coded, actionable message (e.g. `not_found: … use find_schemes`) instead of protocol errors.
+22. **No auth on public tools** (per spec). The MCP server therefore needs no OAuth for the directory; only `report_issue` writes, and it is rate-limited, redacted and rejects identifiers.
+23. **Deploy bundles**: `tsup` bundles each Vercel function into `api/index.js` with all dependencies inlined.

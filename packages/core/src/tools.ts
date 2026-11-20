@@ -62,14 +62,14 @@ export const CompareSchemesInput = z
   })
   .strict();
 
-export const DocumentChecklistInput = z
+export const DocumentChecklistBase = z
   .object({
     profile: ProfileSchema.optional().describe("Use the schemes this profile is eligible for"),
     schemeIds: z.array(z.string().min(1).max(120)).max(20).optional().describe("Or: explicit scheme ids/slugs"),
     lang: LangSchema.optional(),
   })
-  .strict()
-  .refine((v) => v.profile || (v.schemeIds && v.schemeIds.length), { message: "Provide profile or schemeIds" });
+  .strict();
+export const DocumentChecklistInput = DocumentChecklistBase.refine((v) => v.profile || (v.schemeIds && v.schemeIds.length), { message: "Provide profile or schemeIds" });
 
 export const UpcomingDeadlinesInput = z
   .object({
