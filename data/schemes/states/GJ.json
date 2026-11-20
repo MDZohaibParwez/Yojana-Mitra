@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "gj-vahali-dikri",
+    "level": "state",
+    "stateCode": "GJ",
+    "ministry": "Women & Child Development Department, Gujarat",
+    "category": "women_child",
+    "tags": [
+      "girl child",
+      "beti",
+      "vahali dikri"
+    ],
+    "officialApplyUrl": "https://wcd.gujarat.gov.in/",
+    "sourceUrl": "https://wcd.gujarat.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 110000,
+    "text": {
+      "en": {
+        "name": "Vahali Dikri Yojana",
+        "shortDescription": "Staged assistance of ₹1.10 lakh for the first two daughters of Gujarat families with income up to ₹2 lakh.",
+        "benefits": "₹4,000 at Class 1 admission, ₹6,000 at Class 9 admission, and ₹1,00,000 at age 18 (for higher education or marriage).",
+        "howToApplySteps": [
+          "Apply at the Gram Panchayat / taluka / Women & Child Development office (or Digital Gujarat) within one year of the girl's birth."
+        ],
+        "documentsRequired": [
+          "Birth certificate",
+          "Aadhaar card (parent)",
+          "Income certificate",
+          "Domicile / residence certificate",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "वहाली दिकरी योजना",
+        "shortDescription": "₹2 लाख तक आय वाले गुजरात के परिवारों की पहली दो बेटियों को चरणबद्ध ₹1.10 लाख सहायता।",
+        "benefits": "कक्षा 1 में प्रवेश पर ₹4,000, कक्षा 9 में ₹6,000 और 18 साल की उम्र पर ₹1,00,000 (उच्च शिक्षा या विवाह हेतु)।",
+        "howToApplySteps": [
+          "बेटी के जन्म के एक साल के भीतर ग्राम पंचायत / तालुका / महिला एवं बाल विकास कार्यालय (या डिजिटल गुजरात) पर आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "जन्म प्रमाण पत्र",
+          "आधार कार्ड (माता-पिता)",
+          "आय प्रमाण पत्र",
+          "निवास प्रमाण पत्र",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "GJ",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "lte",
+          "value": 1,
+          "note": "Application within one year of birth; first two daughters"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 200000
+        }
+      ]
+    }
+  }
+]

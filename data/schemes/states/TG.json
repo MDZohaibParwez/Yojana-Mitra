@@ -1,0 +1,125 @@
+[
+  {
+    "slug": "tg-kalyana-lakshmi",
+    "level": "state",
+    "stateCode": "TG",
+    "ministry": "SC / ST / BC / Minority Welfare Departments, Telangana",
+    "category": "women_child",
+    "tags": [
+      "marriage",
+      "bride",
+      "kalyana lakshmi",
+      "shaadi mubarak"
+    ],
+    "officialApplyUrl": "https://telanganaepass.cgg.gov.in/",
+    "sourceUrl": "https://telanganaepass.cgg.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 100116,
+    "text": {
+      "en": {
+        "name": "Kalyana Lakshmi / Shaadi Mubarak",
+        "shortDescription": "One-time assistance of ₹1,00,116 at the marriage of a bride (18+) from SC, ST, BC, EBC or minority families in Telangana.",
+        "benefits": "₹1,00,116 one-time financial assistance to the bride's mother's / bride's bank account.",
+        "howToApplySteps": [
+          "Apply online on the TS ePASS portal (Kalyana Lakshmi / Shaadi Mubarak) after marriage, then submit documents to the MRO office."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Caste certificate",
+          "Income certificate",
+          "Age proof / birth certificate",
+          "Marriage certificate",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "कल्याण लक्ष्मी / शादी मुबारक",
+        "shortDescription": "तेलंगाना के SC, ST, BC, EBC या अल्पसंख्यक परिवारों की 18+ उम्र की दुल्हन के विवाह पर ₹1,00,116 की एकमुश्त सहायता।",
+        "benefits": "₹1,00,116 एकमुश्त आर्थिक सहायता।",
+        "howToApplySteps": [
+          "विवाह के बाद TS ePASS पोर्टल पर ऑनलाइन आवेदन करें, फिर MRO कार्यालय में दस्तावेज़ जमा करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "जाति प्रमाण पत्र",
+          "आय प्रमाण पत्र",
+          "आयु प्रमाण / जन्म प्रमाण पत्र",
+          "विवाह प्रमाण पत्र",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "TG",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 18
+        },
+        {
+          "any": [
+            {
+              "field": "socialCategory",
+              "op": "in",
+              "value": [
+                "SC",
+                "ST",
+                "OBC"
+              ]
+            },
+            {
+              "field": "isMinority",
+              "op": "eq",
+              "value": true
+            }
+          ]
+        },
+        {
+          "any": [
+            {
+              "all": [
+                {
+                  "field": "area",
+                  "op": "eq",
+                  "value": "rural"
+                },
+                {
+                  "field": "annualIncome",
+                  "op": "lte",
+                  "value": 150000
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "field": "area",
+                  "op": "eq",
+                  "value": "urban"
+                },
+                {
+                  "field": "annualIncome",
+                  "op": "lte",
+                  "value": 200000
+                }
+              ]
+            }
+          ],
+          "note": "Family income up to ₹1.5 lakh (rural) / ₹2 lakh (urban)"
+        }
+      ]
+    }
+  }
+]

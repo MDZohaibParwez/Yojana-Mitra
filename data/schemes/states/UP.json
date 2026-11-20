@@ -1,0 +1,87 @@
+[
+  {
+    "slug": "up-kanya-sumangala",
+    "level": "state",
+    "stateCode": "UP",
+    "ministry": "Department of Women Welfare, Uttar Pradesh",
+    "category": "women_child",
+    "tags": [
+      "girl child",
+      "beti",
+      "kanya sumangala"
+    ],
+    "officialApplyUrl": "https://mksy.up.gov.in/",
+    "sourceUrl": "https://mksy.up.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 25000,
+    "text": {
+      "en": {
+        "name": "Mukhyamantri Kanya Sumangala Yojana",
+        "shortDescription": "Staged financial support for girls of Uttar Pradesh from birth to graduation, for families with income up to ₹3 lakh.",
+        "benefits": "Amount paid in six stages (birth, vaccination, Class 1, Class 6, Class 9, after Class 12 / graduation admission); total as currently notified by the state.",
+        "howToApplySteps": [
+          "Apply online on mksy.up.gov.in or through the Block Development / SDM office.",
+          "Each stage is applied for separately when the girl reaches it."
+        ],
+        "documentsRequired": [
+          "Birth certificate",
+          "Aadhaar card (parent)",
+          "Income certificate",
+          "Domicile / residence certificate",
+          "Bank passbook",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "मुख्यमंत्री कन्या सुमंगला योजना",
+        "shortDescription": "₹3 लाख तक आय वाले उत्तर प्रदेश के परिवारों की बेटियों को जन्म से स्नातक तक चरणबद्ध आर्थिक सहायता।",
+        "benefits": "छह चरणों में राशि (जन्म, टीकाकरण, कक्षा 1, कक्षा 6, कक्षा 9, 12वीं के बाद / स्नातक प्रवेश); कुल राशि राज्य की वर्तमान अधिसूचना अनुसार।",
+        "howToApplySteps": [
+          "mksy.up.gov.in पर या खंड विकास / SDM कार्यालय से आवेदन करें।",
+          "हर चरण के लिए अलग से आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "जन्म प्रमाण पत्र",
+          "आधार कार्ड (माता-पिता)",
+          "आय प्रमाण पत्र",
+          "निवास प्रमाण पत्र",
+          "बैंक पासबुक",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "UP",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "lte",
+          "value": 21,
+          "note": "Maximum two daughters per family (twins as notified)"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 300000
+        },
+        {
+          "field": "maritalStatus",
+          "op": "eq",
+          "value": "single",
+          "note": "Unmarried girl"
+        }
+      ]
+    }
+  }
+]

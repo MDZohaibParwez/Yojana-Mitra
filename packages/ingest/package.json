@@ -1,0 +1,26 @@
+{
+  "name": "@ym/ingest",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "ingest": "tsx src/cli/ingest.ts",
+    "reverify": "tsx src/cli/reverify.ts",
+    "review": "tsx src/cli/review.ts",
+    "check-sources": "tsx src/cli/check-sources.ts",
+    "coverage": "tsx src/cli/coverage.ts",
+    "translate": "tsx src/cli/translate.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.11.0",
+    "@ym/core": "workspace:*",
+    "@ym/db": "workspace:*",
+    "drizzle-orm": "^0.45.2",
+    "node-html-parser": "^7.0.1",
+    "zod": "^4.6.6"
+  }
+}

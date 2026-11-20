@@ -1,0 +1,96 @@
+[
+  {
+    "slug": "tn-kalaignar-magalir-urimai-thogai",
+    "level": "state",
+    "stateCode": "TN",
+    "ministry": "Department of Revenue & Disaster Management, Tamil Nadu",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "kmut",
+      "urimai thogai"
+    ],
+    "officialApplyUrl": "https://kmut.tn.gov.in/",
+    "sourceUrl": "https://kmut.tn.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 12000,
+    "text": {
+      "en": {
+        "name": "Kalaignar Magalir Urimai Thogai",
+        "shortDescription": "₹1,000 per month for women heads of families in Tamil Nadu with family income up to ₹2.5 lakh.",
+        "benefits": "₹1,000 per month credited to the woman head of the family's bank account.",
+        "howToApplySteps": [
+          "Apply at the special camps / ration shop area camps announced by the district administration.",
+          "Verification by revenue officials."
+        ],
+        "documentsRequired": [
+          "Ration card",
+          "Aadhaar card",
+          "Bank passbook",
+          "Electricity bill"
+        ]
+      },
+      "hi": {
+        "name": "कलैग्नर मगलिर उरिमै तोगै",
+        "shortDescription": "₹2.5 लाख तक पारिवारिक आय वाले तमिलनाडु के परिवारों की महिला मुखिया को ₹1,000 प्रति माह।",
+        "benefits": "परिवार की महिला मुखिया के बैंक खाते में हर महीने ₹1,000।",
+        "howToApplySteps": [
+          "ज़िला प्रशासन द्वारा घोषित विशेष शिविरों में आवेदन करें।",
+          "राजस्व अधिकारियों द्वारा सत्यापन।"
+        ],
+        "documentsRequired": [
+          "राशन कार्ड",
+          "आधार कार्ड",
+          "बैंक पासबुक",
+          "बिजली बिल"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "TN",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "gte",
+          "value": 21
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 250000
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        },
+        {
+          "field": "landHoldingHectares",
+          "op": "lte",
+          "value": 2.02,
+          "note": "Up to 5 acres wet land (or 10 acres dry land)"
+        }
+      ]
+    }
+  }
+]

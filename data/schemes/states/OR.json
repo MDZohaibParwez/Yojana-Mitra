@@ -1,0 +1,185 @@
+[
+  {
+    "slug": "or-subhadra",
+    "level": "state",
+    "stateCode": "OR",
+    "ministry": "Department of Women & Child Development and Mission Shakti, Odisha",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "subhadra",
+      "annual assistance"
+    ],
+    "officialApplyUrl": "https://subhadra.odisha.gov.in/",
+    "sourceUrl": "https://subhadra.odisha.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 10000,
+    "text": {
+      "en": {
+        "name": "Subhadra Yojana",
+        "shortDescription": "₹10,000 a year for five years (in two instalments) to women of Odisha aged 21–60.",
+        "benefits": "₹50,000 over five years: ₹10,000 per year paid in two instalments of ₹5,000 to the woman's Aadhaar-enabled bank account.",
+        "howToApplySteps": [
+          "Apply free at Anganwadi centres, block / urban local body offices, Mo Seba Kendras, CSCs or online on the Subhadra portal."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Ration card (NFSA/SFSS) or income certificate",
+          "Bank passbook (Aadhaar-seeded, single holder)",
+          "Mobile number"
+        ]
+      },
+      "hi": {
+        "name": "सुभद्रा योजना",
+        "shortDescription": "ओडिशा की 21–60 साल की महिलाओं को पाँच साल तक हर साल ₹10,000 (दो किस्तों में)।",
+        "benefits": "पाँच साल में कुल ₹50,000: हर साल ₹5,000 की दो किस्तें महिला के आधार-सक्षम बैंक खाते में।",
+        "howToApplySteps": [
+          "आंगनवाड़ी केंद्र, ब्लॉक / नगर कार्यालय, मो सेबा केंद्र, CSC या सुभद्रा पोर्टल पर मुफ़्त आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "राशन कार्ड (NFSA/SFSS) या आय प्रमाण पत्र",
+          "बैंक पासबुक (आधार से जुड़ा, एकल खाताधारक)",
+          "मोबाइल नंबर"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "OR",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            21,
+            60
+          ]
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        },
+        {
+          "any": [
+            {
+              "field": "hasBplCard",
+              "op": "eq",
+              "value": true
+            },
+            {
+              "field": "annualIncome",
+              "op": "lte",
+              "value": 250000
+            }
+          ],
+          "note": "NFSA/SFSS ration card, or family income up to ₹2.5 lakh"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "or-kalia",
+    "level": "state",
+    "stateCode": "OR",
+    "ministry": "Department of Agriculture & Farmers' Empowerment, Odisha",
+    "category": "agriculture",
+    "tags": [
+      "farmer",
+      "kalia",
+      "income support",
+      "landless"
+    ],
+    "officialApplyUrl": "https://kalia.odisha.gov.in/",
+    "sourceUrl": "https://kalia.odisha.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 4000,
+    "text": {
+      "en": {
+        "name": "KALIA (Krushak Assistance for Livelihood and Income Augmentation)",
+        "shortDescription": "Financial assistance for small and marginal farmers and landless agricultural households in Odisha.",
+        "benefits": "Cultivation / livelihood support paid by DBT, plus life and accident insurance cover, as notified for each season.",
+        "howToApplySteps": [
+          "Check your name / apply through the Gram Panchayat or Agriculture office during the enrolment window, or on kalia.odisha.gov.in."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Land records (Khatauni / 7-12 / Patta)",
+          "Bank passbook",
+          "Ration card"
+        ]
+      },
+      "hi": {
+        "name": "कालिया (KALIA) योजना",
+        "shortDescription": "ओडिशा के लघु और सीमांत किसानों और भूमिहीन कृषि परिवारों को आर्थिक सहायता।",
+        "benefits": "खेती / आजीविका सहायता सीधे बैंक खाते में, साथ में जीवन और दुर्घटना बीमा (हर मौसम की अधिसूचना के अनुसार)।",
+        "howToApplySteps": [
+          "नामांकन अवधि में ग्राम पंचायत / कृषि कार्यालय या kalia.odisha.gov.in पर आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "भूमि रिकॉर्ड",
+          "बैंक पासबुक",
+          "राशन कार्ड"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "OR",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "farmer",
+            "agricultural_labourer"
+          ]
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        },
+        {
+          "field": "landHoldingHectares",
+          "op": "lte",
+          "value": 2,
+          "note": "Small / marginal farmers or landless households"
+        }
+      ]
+    }
+  }
+]

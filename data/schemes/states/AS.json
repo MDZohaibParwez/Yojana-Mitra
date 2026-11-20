@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "as-orunodoi",
+    "level": "state",
+    "stateCode": "AS",
+    "ministry": "Finance Department, Assam",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "orunodoi"
+    ],
+    "officialApplyUrl": "https://assam.gov.in/",
+    "sourceUrl": "https://assam.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 15000,
+    "text": {
+      "en": {
+        "name": "Orunodoi",
+        "shortDescription": "Monthly DBT assistance to the woman of eligible low-income households in Assam.",
+        "benefits": "Monthly assistance to the woman member of the household (amount as currently notified under Orunodoi).",
+        "howToApplySteps": [
+          "Apply through the Gaon Panchayat / Ward / Circle office during the enrolment drive."
+        ],
+        "documentsRequired": [
+          "Ration card",
+          "Aadhaar card",
+          "Bank passbook"
+        ]
+      },
+      "hi": {
+        "name": "ओरुनोदोई",
+        "shortDescription": "असम के पात्र कम आय वाले परिवारों की महिला को मासिक DBT सहायता।",
+        "benefits": "परिवार की महिला सदस्य को हर महीने सहायता (वर्तमान अधिसूचित राशि)।",
+        "howToApplySteps": [
+          "नामांकन अभियान के दौरान गाँव पंचायत / वार्ड / सर्कल कार्यालय से आवेदन करें।"
+        ],
+        "documentsRequired": [
+          "राशन कार्ड",
+          "आधार कार्ड",
+          "बैंक पासबुक"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "AS",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 200000
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  }
+]

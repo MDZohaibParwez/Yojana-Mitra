@@ -1,0 +1,94 @@
+[
+  {
+    "slug": "mh-majhi-ladki-bahin",
+    "level": "state",
+    "stateCode": "MH",
+    "ministry": "Women & Child Development Department, Maharashtra",
+    "category": "women_child",
+    "tags": [
+      "women",
+      "monthly assistance",
+      "ladki bahin"
+    ],
+    "officialApplyUrl": "https://ladakibahin.maharashtra.gov.in/",
+    "sourceUrl": "https://ladakibahin.maharashtra.gov.in/",
+    "status": "active",
+    "deadline": null,
+    "benefitValueInr": 18000,
+    "text": {
+      "en": {
+        "name": "Mukhyamantri Majhi Ladki Bahin Yojana",
+        "shortDescription": "₹1,500 per month for women of Maharashtra aged 21–65 from families with income up to ₹2.5 lakh.",
+        "benefits": "₹1,500 per month by DBT to the woman's Aadhaar-linked bank account.",
+        "howToApplySteps": [
+          "Apply on the Ladki Bahin portal / Nari Shakti Doot app, or at the Anganwadi, ward or Setu office.",
+          "Complete Aadhaar e-KYC."
+        ],
+        "documentsRequired": [
+          "Aadhaar card",
+          "Domicile certificate or birth certificate of Maharashtra (or ration card)",
+          "Income certificate or yellow / orange ration card",
+          "Bank passbook",
+          "Passport-size photograph"
+        ]
+      },
+      "hi": {
+        "name": "मुख्यमंत्री माझी लाडकी बहीण योजना",
+        "shortDescription": "₹2.5 लाख तक आय वाले परिवारों की 21–65 साल की महाराष्ट्र की महिलाओं को ₹1,500 प्रति माह।",
+        "benefits": "महिला के आधार-लिंक बैंक खाते में हर महीने ₹1,500।",
+        "howToApplySteps": [
+          "लाडकी बहीण पोर्टल / नारी शक्ति दूत ऐप, या आंगनवाड़ी, वार्ड या सेतु केंद्र पर आवेदन करें।",
+          "आधार e-KYC पूरा करें।"
+        ],
+        "documentsRequired": [
+          "आधार कार्ड",
+          "महाराष्ट्र का अधिवास या जन्म प्रमाण पत्र (या राशन कार्ड)",
+          "आय प्रमाण पत्र या पीला / केसरी राशन कार्ड",
+          "बैंक पासबुक",
+          "पासपोर्ट साइज़ फ़ोटो"
+        ]
+      }
+    },
+    "rule": {
+      "all": [
+        {
+          "field": "state",
+          "op": "eq",
+          "value": "MH",
+          "note": "Must be a resident of the state"
+        },
+        {
+          "field": "gender",
+          "op": "eq",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "between",
+          "value": [
+            21,
+            65
+          ]
+        },
+        {
+          "field": "annualIncome",
+          "op": "lte",
+          "value": 250000
+        },
+        {
+          "field": "isIncomeTaxPayer",
+          "op": "eq",
+          "value": false,
+          "note": "No family member pays income tax"
+        },
+        {
+          "not": {
+            "field": "occupation",
+            "op": "eq",
+            "value": "government_employee"
+          }
+        }
+      ]
+    }
+  }
+]

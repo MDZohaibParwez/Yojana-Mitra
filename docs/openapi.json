@@ -1,0 +1,3168 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Yojana Mitra API",
+    "version": "0.1.0",
+    "description": "Public tools (no auth) and the token-protected Admin API used by the separate admin panel.\n\n**Admin auth**: send `Authorization: Bearer <token>` where token is an API key (`ym_…`, created with `pnpm --filter @ym/api admin:key`) or a 15-minute JWT obtained from `POST /admin/v1/auth/token`. Scopes: `read`, `write`, `review`.\n\n**Review model**: every created or edited scheme, rule version or translation is `pending` until a principal with the `review` scope approves it. Only approved content is ever shown to users."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "public",
+      "description": "Citizen-facing tools (same logic as the MCP server and WhatsApp bot)"
+    },
+    {
+      "name": "admin-auth"
+    },
+    {
+      "name": "admin-schemes"
+    },
+    {
+      "name": "admin-review"
+    },
+    {
+      "name": "admin-stats"
+    }
+  ],
+  "paths": {
+    "/v1/tools/{name}": {
+      "post": {
+        "tags": [
+          "public"
+        ],
+        "summary": "Run a tool by name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "find_schemes",
+                "get_scheme",
+                "check_eligibility",
+                "compare_schemes",
+                "document_checklist",
+                "upcoming_deadlines",
+                "report_issue"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Tool input; see the per-tool aliases below for shapes."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/schemes/search": {
+      "post": {
+        "tags": [
+          "public"
+        ],
+        "summary": "find_schemes",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "profile"
+                ],
+                "properties": {
+                  "profile": {
+                    "$ref": "#/components/schemas/Profile"
+                  },
+                  "query": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "lang": {
+                    "type": "string",
+                    "enum": [
+                      "en",
+                      "hi",
+                      "hinglish",
+                      "gu",
+                      "mr",
+                      "ta",
+                      "te",
+                      "bn",
+                      "kn"
+                    ]
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "includeMaybe": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/schemes/{id}": {
+      "get": {
+        "tags": [
+          "public"
+        ],
+        "summary": "get_scheme",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "hi",
+                "hinglish",
+                "gu",
+                "mr",
+                "ta",
+                "te",
+                "bn",
+                "kn"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/schemes/{id}/eligibility": {
+      "post": {
+        "tags": [
+          "public"
+        ],
+        "summary": "check_eligibility",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "profile"
+                ],
+                "properties": {
+                  "profile": {
+                    "$ref": "#/components/schemas/Profile"
+                  },
+                  "lang": {
+                    "type": "string",
+                    "enum": [
+                      "en",
+                      "hi",
+                      "hinglish",
+                      "gu",
+                      "mr",
+                      "ta",
+                      "te",
+                      "bn",
+                      "kn"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/schemes/compare": {
+      "post": {
+        "tags": [
+          "public"
+        ],
+        "summary": "compare_schemes",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ids"
+                ],
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 2,
+                    "maxItems": 5
+                  },
+                  "profile": {
+                    "$ref": "#/components/schemas/Profile"
+                  },
+                  "lang": {
+                    "type": "string",
+                    "enum": [
+                      "en",
+                      "hi",
+                      "hinglish",
+                      "gu",
+                      "mr",
+                      "ta",
+                      "te",
+                      "bn",
+                      "kn"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/documents/checklist": {
+      "post": {
+        "tags": [
+          "public"
+        ],
+        "summary": "document_checklist",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "profile": {
+                    "$ref": "#/components/schemas/Profile"
+                  },
+                  "schemeIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "lang": {
+                    "type": "string",
+                    "enum": [
+                      "en",
+                      "hi",
+                      "hinglish",
+                      "gu",
+                      "mr",
+                      "ta",
+                      "te",
+                      "bn",
+                      "kn"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/deadlines": {
+      "get": {
+        "tags": [
+          "public"
+        ],
+        "summary": "upcoming_deadlines",
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "hi",
+                "hinglish",
+                "gu",
+                "mr",
+                "ta",
+                "te",
+                "bn",
+                "kn"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/schemes/{id}/reports": {
+      "post": {
+        "tags": [
+          "public"
+        ],
+        "summary": "report_issue",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 2000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/openapi.json": {
+      "get": {
+        "tags": [
+          "admin-auth"
+        ],
+        "summary": "This specification",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/auth/token": {
+      "post": {
+        "tags": [
+          "admin-auth"
+        ],
+        "summary": "Exchange an API key for a 15-minute JWT",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "apiKey"
+                ],
+                "properties": {
+                  "apiKey": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/me": {
+      "get": {
+        "tags": [
+          "admin-auth"
+        ],
+        "summary": "Current principal and scopes",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Principal"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/schemes": {
+      "get": {
+        "tags": [
+          "admin-schemes"
+        ],
+        "summary": "List / search schemes (all review states)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Matches slug, name, ministry"
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "central",
+                "state"
+              ]
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reviewStatus",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/ReviewStatus"
+            }
+          },
+          {
+            "name": "linkStatus",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "unchecked",
+                "ok",
+                "changed",
+                "broken"
+              ]
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SchemeRow"
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/schemes/{id}": {
+      "get": {
+        "tags": [
+          "admin-schemes"
+        ],
+        "summary": "Scheme with all rule versions, translations and recent verification events",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemeDetail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "admin-schemes"
+        ],
+        "summary": "Edit scheme fields (puts it back to pending unless approve=true and caller has review scope)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchemePatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemeRow"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/schemes/{id}/translations/{lang}": {
+      "put": {
+        "tags": [
+          "admin-schemes"
+        ],
+        "summary": "Create or replace a translation",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "hi",
+                "hinglish",
+                "gu",
+                "mr",
+                "ta",
+                "te",
+                "bn",
+                "kn"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SchemeText"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "approve": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/schemes/{id}/rules": {
+      "post": {
+        "tags": [
+          "admin-schemes"
+        ],
+        "summary": "Add a new eligibility rule version (always pending)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "rule"
+                ],
+                "properties": {
+                  "rule": {
+                    "$ref": "#/components/schemas/RuleNode"
+                  },
+                  "sourceText": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "integer"
+                    },
+                    "reviewStatus": {
+                      "$ref": "#/components/schemas/ReviewStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/schemes/{id}/rules/preview": {
+      "post": {
+        "tags": [
+          "admin-schemes"
+        ],
+        "summary": "Evaluate a candidate rule against a test profile (no side effects)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "rule",
+                  "profile"
+                ],
+                "properties": {
+                  "rule": {
+                    "$ref": "#/components/schemas/RuleNode"
+                  },
+                  "profile": {
+                    "$ref": "#/components/schemas/Profile"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evaluation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/schemes/{id}/approve": {
+      "post": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Approve scheme content, its latest pending rule and pending translations; stamps last_verified_at",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/schemes/{id}/reject": {
+      "post": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Reject scheme (hidden from users)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Scheme UUID or slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "notes"
+                ],
+                "properties": {
+                  "notes": {
+                    "type": "string",
+                    "minLength": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/review/summary": {
+      "get": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Queue counts",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pending_rules": {
+                      "type": "integer"
+                    },
+                    "pending_schemes": {
+                      "type": "integer"
+                    },
+                    "open_reports": {
+                      "type": "integer"
+                    },
+                    "link_issues": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/review/rules": {
+      "get": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Pending rules with the official source text they came from",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PendingRule"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/rules/{ruleId}/approve": {
+      "post": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Approve one rule version",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "notes": {
+                    "type": "string"
+                  },
+                  "alsoApproveScheme": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/rules/{ruleId}/reject": {
+      "post": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Reject one rule version",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "notes"
+                ],
+                "properties": {
+                  "notes": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/review/reports": {
+      "get": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "User reports of wrong information",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "open",
+                "in_review",
+                "resolved",
+                "rejected"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Report"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/reports/{id}": {
+      "patch": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Update report status",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "open",
+                      "in_review",
+                      "resolved",
+                      "rejected"
+                    ]
+                  },
+                  "resolutionNote": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/review/links": {
+      "get": {
+        "tags": [
+          "admin-review"
+        ],
+        "summary": "Schemes with broken or changed source/apply links (from monthly re-verification)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SchemeRow"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/v1/stats": {
+      "get": {
+        "tags": [
+          "admin-stats"
+        ],
+        "summary": "Anonymous usage statistics",
+        "description": "Weekly events per channel, eligibility checks, top states, languages and top schemes. Built only from anonymous counters.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 365,
+              "default": 28
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Admin API key (ym_…) or JWT from /admin/v1/auth/token"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ReviewStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "approved",
+          "rejected"
+        ]
+      },
+      "Principal": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "read",
+                "write",
+                "review"
+              ]
+            }
+          }
+        }
+      },
+      "Profile": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "All fields optional. Never contains identifiers.",
+        "properties": {
+          "age": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 120
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "male",
+              "female",
+              "transgender"
+            ]
+          },
+          "annualIncome": {
+            "type": "number",
+            "description": "Annual family income in INR"
+          },
+          "state": {
+            "type": "string",
+            "description": "State/UT code, e.g. GJ"
+          },
+          "district": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string",
+            "enum": [
+              "rural",
+              "urban"
+            ]
+          },
+          "occupation": {
+            "type": "string"
+          },
+          "socialCategory": {
+            "type": "string",
+            "enum": [
+              "SC",
+              "ST",
+              "OBC",
+              "General",
+              "EWS"
+            ]
+          },
+          "isMinority": {
+            "type": "boolean"
+          },
+          "hasDisability": {
+            "type": "boolean"
+          },
+          "disabilityPercent": {
+            "type": "number"
+          },
+          "maritalStatus": {
+            "type": "string",
+            "enum": [
+              "single",
+              "married",
+              "widowed",
+              "divorced",
+              "separated"
+            ]
+          },
+          "landHoldingHectares": {
+            "type": "number"
+          },
+          "hasBplCard": {
+            "type": "boolean"
+          },
+          "educationLevel": {
+            "type": "string",
+            "enum": [
+              "none",
+              "primary",
+              "secondary",
+              "higher_secondary",
+              "diploma",
+              "graduate",
+              "postgraduate"
+            ]
+          },
+          "isIncomeTaxPayer": {
+            "type": "boolean"
+          },
+          "isPregnantOrLactating": {
+            "type": "boolean"
+          },
+          "hasPuccaHouse": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RuleNode": {
+        "description": "AND/OR/NOT tree of conditions",
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "field",
+              "op"
+            ],
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "neq",
+                  "in",
+                  "nin",
+                  "gt",
+                  "gte",
+                  "lt",
+                  "lte",
+                  "between",
+                  "exists"
+                ]
+              },
+              "value": {},
+              "note": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "all"
+            ],
+            "properties": {
+              "all": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RuleNode"
+                }
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "any"
+            ],
+            "properties": {
+              "any": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RuleNode"
+                }
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "not"
+            ],
+            "properties": {
+              "not": {
+                "$ref": "#/components/schemas/RuleNode"
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "Evaluation": {
+        "type": "object",
+        "properties": {
+          "eligible": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string",
+                "const": "maybe"
+              }
+            ]
+          },
+          "passed": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "missing": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SchemeText": {
+        "type": "object",
+        "required": [
+          "name",
+          "shortDescription",
+          "benefits",
+          "howToApplySteps",
+          "documentsRequired"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "benefits": {
+            "type": "string"
+          },
+          "howToApplySteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "documentsRequired": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SchemeRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "ministry": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "central",
+              "state"
+            ]
+          },
+          "stateCode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "benefits": {
+            "type": "string"
+          },
+          "howToApplySteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "documentsRequired": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "officialApplyUrl": {
+            "type": "string"
+          },
+          "sourceUrl": {
+            "type": "string"
+          },
+          "lastVerifiedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "closed",
+              "unknown"
+            ]
+          },
+          "deadline": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "benefitValueInr": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reviewStatus": {
+            "$ref": "#/components/schemas/ReviewStatus"
+          },
+          "linkStatus": {
+            "type": "string",
+            "enum": [
+              "unchecked",
+              "ok",
+              "changed",
+              "broken"
+            ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "SchemePatch": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ministry": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "central",
+              "state"
+            ]
+          },
+          "stateCode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "officialApplyUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "closed",
+              "unknown"
+            ]
+          },
+          "deadline": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "benefitValueInr": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "name": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "benefits": {
+            "type": "string"
+          },
+          "howToApplySteps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "documentsRequired": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "approve": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "SchemeDetail": {
+        "type": "object",
+        "properties": {
+          "scheme": {
+            "$ref": "#/components/schemas/SchemeRow"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "integer"
+                },
+                "rule": {
+                  "$ref": "#/components/schemas/RuleNode"
+                },
+                "sourceText": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "generatedBy": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "reviewStatus": {
+                  "$ref": "#/components/schemas/ReviewStatus"
+                },
+                "reviewedBy": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "reviewedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "translations": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "PendingRule": {
+        "type": "object",
+        "properties": {
+          "ruleId": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "rule": {
+            "$ref": "#/components/schemas/RuleNode"
+          },
+          "sourceText": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "generatedBy": {
+            "type": "string"
+          },
+          "model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object"
+          },
+          "sourceUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "report": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "schemeId": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "channel": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string"
+              }
+            }
+          },
+          "slug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object"
+          }
+        }
+      },
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "since": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "weeklyByChannel": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "week": {
+                  "type": "string"
+                },
+                "channel": {
+                  "type": "string"
+                },
+                "events": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "byTool": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "type": "string"
+                },
+                "events": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "eligibilityChecks": {
+            "type": "integer"
+          },
+          "topStates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "type": "string"
+                },
+                "events": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "topLangs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "lang": {
+                  "type": "string"
+                },
+                "events": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "topSchemes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "slug": {
+                  "type": "string"
+                },
+                "views": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
