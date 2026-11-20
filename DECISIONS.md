@@ -51,3 +51,10 @@ Decisions taken while building, so they can be reviewed later. Newest phase last
 30. **Website calls core directly through Next.js server actions** (same `@ym/core` + `@ym/db` as the API), avoiding a second network hop and CORS. Web chat state is held in the browser tab and re-validated by zod on every turn; the server stores nothing.
 31. **Share links contain only scheme slugs** (`/s?ids=pm-kisan,pm-jay`), never profile data; `/s` is `noindex`.
 32. **Performance**: no web fonts (system + Noto fallback), no UI library runtime (shadcn-style components written by hand on Tailwind), inline CSS, metadata rendered in `<head>` for all clients. Local Lighthouse (mobile, simulated 4G): Performance 95–98, Accessibility 98–100, Best Practices 96, SEO 100 (except intentionally noindexed `/s`).
+
+## Phase 9 – Admin API
+
+33. **Admin API lives in `apps/api` under `/admin/v1`**, Hono + zod validation, OpenAPI 3.1 hand-written next to the routes (`src/openapi.ts`) and exported to `docs/openapi.json`; a test fails if a route group is missing from the spec.
+34. **Auth**: hashed API keys (env or DB, revocable, scoped `read/write/review`) + optional short-lived HS256 JWT exchange for the browser panel. No passwords or user accounts in this project.
+35. **Edits are reviewable too**: any admin edit returns a scheme to `pending` unless the editor explicitly approves with the `review` scope, so a single compromised `write` key cannot publish content.
+36. **`/v1/chat`** exposes the conversation engine statelessly (client keeps the state) for future clients (e.g. an Android app or IVR).

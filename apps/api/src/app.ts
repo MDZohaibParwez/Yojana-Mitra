@@ -19,7 +19,8 @@ import {
 export interface AppDeps {
   repo: () => SchemeRepository;
   /** Mounted under /admin/v1 when provided. */
-  admin?: Hono;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  admin?: Hono<any>;
   /** Mounted under /v1/chat when provided. */
   chat?: Hono;
   rateLimitPerMinute?: number;

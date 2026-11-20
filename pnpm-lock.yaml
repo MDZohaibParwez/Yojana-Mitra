@@ -35,6 +35,9 @@ importers:
       '@ym/db':
         specifier: workspace:*
         version: link:../../packages/db
+      drizzle-orm:
+        specifier: ^0.44.7
+        version: 0.44.7(@opentelemetry/api@1.10.0)(postgres@3.4.9)
       hono:
         specifier: ^4.10.4
         version: 4.13.19

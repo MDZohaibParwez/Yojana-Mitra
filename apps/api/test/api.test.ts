@@ -67,3 +67,14 @@ describe("public API", () => {
     expect((await small.request("/v1/health", { headers: { "x-forwarded-for": "10.0.0.10" } })).status).toBe(200);
   });
 });
+
+describe("chat endpoint", () => {
+  it("is stateless and validates state", async () => {
+    const { chatRoutes } = await import("../src/chat.js");
+    const app2 = createApp({ repo: () => repo, chat: chatRoutes(() => repo), rateLimitPerMinute: 1000 });
+    const r1 = await (await app2.request("/v1/chat", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text: "I am a 30 year old farmer from Bihar" }) })).json();
+    expect(r1.state.profile.state).toBe("BR");
+    const r2 = await (await app2.request("/v1/chat", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ state: { ...r1.state, profile: { aadhaar: "x" } }, text: "hello" }) })).json();
+    expect(r2.state.profile).toEqual({});
+  });
+});
