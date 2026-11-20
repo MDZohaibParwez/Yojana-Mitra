@@ -10,3 +10,4 @@ export * from "./privacy.js";
 export * from "./repository.js";
 export * from "./tools.js";
 export * from "./i18n/index.js";
+export * from "./ratelimit.js";

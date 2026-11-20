@@ -1,9 +1,21 @@
-import { readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { SeedSchemeSchema, type SeedScheme } from "@ym/core";
 
-export const DATA_DIR = fileURLToPath(new URL("../../../data/schemes", import.meta.url));
+function findDataDir(): string {
+  if (process.env.YM_DATA_DIR) return process.env.YM_DATA_DIR;
+  const rel = join(dirname(fileURLToPath(import.meta.url)), "../../../data/schemes");
+  if (existsSync(rel)) return rel;
+  let d = process.cwd();
+  for (let i = 0; i < 5; i++) {
+    if (existsSync(join(d, "data/schemes/central.json"))) return join(d, "data/schemes");
+    d = dirname(d);
+  }
+  return rel;
+}
+
+export const DATA_DIR = findDataDir();
 
 /** Load and validate every curated seed file (central.json + states/*.json). Throws on invalid data. */
 export function loadSeedFiles(dir = DATA_DIR): SeedScheme[] {

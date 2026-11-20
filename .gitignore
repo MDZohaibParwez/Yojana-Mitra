@@ -9,3 +9,4 @@ dist
 coverage
 *.log
 next-env.d.ts
+apps/*/api/index.js
